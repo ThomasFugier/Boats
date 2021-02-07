@@ -1,20 +1,20 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
-    m_FilePath: C:/Users/thoma/Documents/Projets Unity/Boats/Packages/manifest.json
+    m_FilePath: C:/Users/thoma/Documents/Repositories/Boats/Boats/Packages/manifest.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637482962156189508
-    m_Hash: 3761018799
+      ticks: 637483292747625199
+    m_Hash: 3680423214
   m_LockFileStatus:
-    m_FilePath: C:/Users/thoma/Documents/Projets Unity/Boats/Packages/packages-lock.json
+    m_FilePath: C:/Users/thoma/Documents/Repositories/Boats/Boats/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637482962164364156
-    m_Hash: 3031899948
+      ticks: 637483292755145059
+    m_Hash: 2381073361
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -25,7 +25,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.3.9
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.collab-proxy@1.3.9
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.collab-proxy@1.3.9
       assetPath: Packages/com.unity.collab-proxy
       name: com.unity.collab-proxy
       displayName: Unity Collaborate
@@ -120,7 +120,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.2.1
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.ide.rider@1.2.1
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.ide.rider@1.2.1
       assetPath: Packages/com.unity.ide.rider
       name: com.unity.ide.rider
       displayName: JetBrains Rider Editor
@@ -219,7 +219,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 2.0.3
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.ide.visualstudio@2.0.3
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.ide.visualstudio@2.0.3
       assetPath: Packages/com.unity.ide.visualstudio
       name: com.unity.ide.visualstudio
       displayName: Visual Studio Editor
@@ -288,7 +288,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.2.3
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.ide.vscode@1.2.3
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.ide.vscode@1.2.3
       assetPath: Packages/com.unity.ide.vscode
       name: com.unity.ide.vscode
       displayName: Visual Studio Code Editor
@@ -352,12 +352,91 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.vscode.git
         revision: b5ec9b38109e52b1b26597d521e4df75e042ebb9
         path: 
+    - packageId: com.unity.postprocessing@2.3.0
+      testable: 0
+      isDirectDependency: 1
+      version: 2.3.0
+      source: 1
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.postprocessing@2.3.0
+      assetPath: Packages/com.unity.postprocessing
+      name: com.unity.postprocessing
+      displayName: Post Processing
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: The post-processing stack (v2) comes with a collection of effects
+        and image filters you can apply to your cameras to improve the visuals of
+        your games.
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 0.1.7
+        - 0.1.8
+        - 2.0.0-beta
+        - 2.0.1-beta
+        - 2.0.2-preview
+        - 2.0.3-preview
+        - 2.0.5-preview
+        - 2.0.7-preview
+        - 2.0.8-preview
+        - 2.0.9-preview
+        - 2.0.10-preview
+        - 2.0.11-preview
+        - 2.0.12-preview
+        - 2.0.13-preview
+        - 2.0.14-preview
+        - 2.0.15-preview
+        - 2.0.16-preview
+        - 2.0.17-preview
+        - 2.1.0
+        - 2.1.1
+        - 2.1.2
+        - 2.1.3
+        - 2.1.4
+        - 2.1.5
+        - 2.1.6
+        - 2.1.7
+        - 2.2.1
+        - 2.2.2
+        - 2.3.0
+        - 3.0.1
+        compatible:
+        - 2.3.0
+        - 3.0.1
+        verified: 2.3.0
+      dependencies: []
+      resolvedDependencies: []
+      keywords: []
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637144563160000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: git@github.com:Unity-Technologies/PostProcessing.git
+        revision: e6de985c41f04a5fc7c7227dd67e3e73fac834e7
+        path: 
     - packageId: com.unity.render-pipelines.universal@8.2.0
       testable: 0
       isDirectDependency: 1
       version: 8.2.0
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.render-pipelines.universal@8.2.0
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.render-pipelines.universal@8.2.0
       assetPath: Packages/com.unity.render-pipelines.universal
       name: com.unity.render-pipelines.universal
       displayName: Universal RP
@@ -459,12 +538,146 @@ m_PackageAssets:
         url: git+https://github.com/Unity-Technologies/Graphics.git
         revision: 4ad03e7975af24c8e60c974edb24c696e74e39b3
         path: 
+    - packageId: com.unity.scriptablebuildpipeline@1.16.1
+      testable: 0
+      isDirectDependency: 1
+      version: 1.16.1
+      source: 1
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.scriptablebuildpipeline@1.16.1
+      assetPath: Packages/com.unity.scriptablebuildpipeline
+      name: com.unity.scriptablebuildpipeline
+      displayName: Scriptable Build Pipeline
+      author:
+        name: 
+        email: 
+        url: 
+      category: 
+      type: 
+      description: The Scriptable Build Pipeline moves the asset bundle build pipeline
+        to C#.  Use the pre-defined build flows, or create your own using the divided
+        up APIs.  This system improves build time, fixes incremental build, and provides
+        greater flexibility.
+      status: 4
+      errors: []
+      versions:
+        all:
+        - 0.0.5-preview
+        - 0.0.6-preview
+        - 0.0.8-preview
+        - 0.0.9-preview
+        - 0.0.10-preview
+        - 0.0.14-preview
+        - 0.0.15-preview
+        - 0.1.0-preview
+        - 0.2.0-preview
+        - 1.0.1-preview
+        - 1.1.0-preview
+        - 1.1.1-preview
+        - 1.2.1-preview
+        - 1.3.5-preview
+        - 1.4.1-preview
+        - 1.5.0-preview
+        - 1.5.1
+        - 1.5.2
+        - 1.5.4
+        - 1.5.6
+        - 1.5.10
+        - 1.6.3-preview
+        - 1.6.4-preview
+        - 1.6.5-preview
+        - 1.7.2
+        - 1.7.3
+        - 1.8.2
+        - 1.8.4
+        - 1.8.6
+        - 1.9.0
+        - 1.10.0
+        - 1.11.1
+        - 1.11.2
+        - 1.12.0
+        - 1.13.1
+        - 1.14.0
+        - 1.14.1
+        - 1.15.1
+        - 1.15.2
+        - 1.16.1
+        compatible:
+        - 0.0.5-preview
+        - 0.0.6-preview
+        - 0.0.8-preview
+        - 0.0.9-preview
+        - 0.0.10-preview
+        - 0.0.14-preview
+        - 0.0.15-preview
+        - 0.1.0-preview
+        - 0.2.0-preview
+        - 1.0.1-preview
+        - 1.1.0-preview
+        - 1.1.1-preview
+        - 1.2.1-preview
+        - 1.3.5-preview
+        - 1.4.1-preview
+        - 1.5.0-preview
+        - 1.5.1
+        - 1.5.2
+        - 1.5.4
+        - 1.5.6
+        - 1.5.10
+        - 1.6.3-preview
+        - 1.6.4-preview
+        - 1.6.5-preview
+        - 1.7.2
+        - 1.7.3
+        - 1.8.2
+        - 1.8.4
+        - 1.8.6
+        - 1.9.0
+        - 1.10.0
+        - 1.11.1
+        - 1.11.2
+        - 1.12.0
+        - 1.13.1
+        - 1.14.0
+        - 1.14.1
+        - 1.15.1
+        - 1.15.2
+        - 1.16.1
+        verified: 1.7.3
+      dependencies: []
+      resolvedDependencies: []
+      keywords:
+      - build
+      - bundle
+      - bundles
+      - assetbundles
+      - cache
+      - server
+      registry:
+        id: main
+        name: 
+        url: https://packages.unity.com
+        scopes: []
+        isDefault: 1
+        capabilities: 7
+      hasRegistry: 1
+      hideInEditor: 1
+      entitlements:
+        isAllowed: 1
+      isAssetStorePackage: 0
+      datePublishedTicks: 637474411890000000
+      documentationUrl: 
+      hasRepository: 1
+      repository:
+        type: git
+        url: https://github.cds.internal.unity3d.com/unity/Addressables.git
+        revision: c8db75bc3b1b1adfc2a06c1597f8ae4fbc5fe69c
+        path: 
     - packageId: com.unity.test-framework@1.1.18
       testable: 0
       isDirectDependency: 1
       version: 1.1.18
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.test-framework@1.1.18
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.test-framework@1.1.18
       assetPath: Packages/com.unity.test-framework
       name: com.unity.test-framework
       displayName: Test Framework
@@ -554,7 +767,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 3.0.1
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.textmeshpro@3.0.1
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.textmeshpro@3.0.1
       assetPath: Packages/com.unity.textmeshpro
       name: com.unity.textmeshpro
       displayName: TextMeshPro
@@ -701,7 +914,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.3.6
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.timeline@1.3.6
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.timeline@1.3.6
       assetPath: Packages/com.unity.timeline
       name: com.unity.timeline
       displayName: Timeline
@@ -2661,7 +2874,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 1.0.0
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.ext.nunit@1.0.0
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.ext.nunit@1.0.0
       assetPath: Packages/com.unity.ext.nunit
       name: com.unity.ext.nunit
       displayName: Custom NUnit
@@ -2722,7 +2935,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 8.2.0
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.render-pipelines.core@8.2.0
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.render-pipelines.core@8.2.0
       assetPath: Packages/com.unity.render-pipelines.core
       name: com.unity.render-pipelines.core
       displayName: Core RP Library
@@ -2872,7 +3085,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 8.2.0
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.shadergraph@8.2.0
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.shadergraph@8.2.0
       assetPath: Packages/com.unity.shadergraph
       name: com.unity.shadergraph
       displayName: Shader Graph
@@ -3024,7 +3237,7 @@ m_PackageAssets:
       isDirectDependency: 0
       version: 4.0.9
       source: 1
-      resolvedPath: C:\Users\thoma\Documents\Projets Unity\Boats\Library\PackageCache\com.unity.searcher@4.0.9
+      resolvedPath: C:\Users\thoma\Documents\Repositories\Boats\Boats\Library\PackageCache\com.unity.searcher@4.0.9
       assetPath: Packages/com.unity.searcher
       name: com.unity.searcher
       displayName: Searcher
@@ -3095,5 +3308,5 @@ m_PackageAssets:
         path: 
   m_LocalPackages:
     m_LocalFileStatus: []
-m_ProjectPath: C:/Users/thoma/Documents/Projets Unity/Boats/Packages
+m_ProjectPath: C:/Users/thoma/Documents/Repositories/Boats/Boats/Packages
 m_EditorVersion: 2020.1.14f1 (d81f64f5201d)
