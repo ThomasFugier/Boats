@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: eedc677a1d955b24986dd8881c2c9f46
+ModelImporter:
+  serializedVersion: 20101
+  internalIDToNameTable:
+  - first:
+      74: -5012247883931203521
+    second: boat body.001|boat bodyAction.001
+  - first:
+      74: 7900528460532572848
+    second: boat body.001|camAction
+  - first:
+      74: 5634606588556505428
+    second: boat body.001|doorAction
+  - first:
+      74: -1531004464749956797
+    second: boat body.001|waves displaceAction.002
+  - first:
+      74: -5492370071659933417
+    second: boat body.001|wheelAction
+  - first:
+      74: 5711638271630500843
+    second: door.001|boat bodyAction.001
+  - first:
+      74: -3962953165303582409
+    second: door.001|camAction
+  - first:
+      74: 7079475820797310172
+    second: door.001|doorAction
+  - first:
+      74: -4277453174848535287
+    second: door.001|waves displaceAction.002
+  - first:
+      74: 3761733556834521566
+    second: door.001|wheelAction
+  - first:
+      74: -624562776371866637
+    second: panel.001|boat bodyAction.001
+  - first:
+      74: -2559942024445576793
+    second: panel.001|camAction
+  - first:
+      74: 8516675591561288703
+    second: panel.001|doorAction
+  - first:
+      74: -4521447057097970999
+    second: panel.001|waves displaceAction.002
+  - first:
+      74: -4011224903494236862
+    second: panel.001|wheelAction
+  - first:
+      74: 1472002026633035934
+    second: wheel.001|boat bodyAction.001
+  - first:
+      74: -112051642563872544
+    second: wheel.001|camAction
+  - first:
+      74: 2416766469710743734
+    second: wheel.001|doorAction
+  - first:
+      74: -9004447979974253129
+    second: wheel.001|waves displaceAction.002
+  - first:
+      74: -347104527753310023
+    second: wheel.001|wheelAction
+  - first:
+      74: 3788044895325516402
+    second: fish_1.006|boat bodyAction.001
+  - first:
+      74: 5845939342319401808
+    second: fish_1.006|camAction
+  - first:
+      74: 9094623287431364278
+    second: fish_1.006|doorAction
+  - first:
+      74: 3435798865526618072
+    second: fish_1.006|waves displaceAction.002
+  - first:
+      74: 6517000881643650532
+    second: fish_1.006|wheelAction
+  - first:
+      74: 8125365075121198913
+    second: water.002|boat bodyAction.001
+  - first:
+      74: 7156423980117313384
+    second: water.002|camAction
+  - first:
+      74: 8627583170388382418
+    second: water.002|doorAction
+  - first:
+      74: -803336033695301840
+    second: water.002|waves displaceAction.002
+  - first:
+      74: -7243795180657792294
+    second: water.002|wheelAction
+  - first:
+      74: 1408130391134934290
+    second: send.003|boat bodyAction.001
+  - first:
+      74: 1315529594719118443
+    second: send.003|camAction
+  - first:
+      74: 1649052141317027204
+    second: send.003|doorAction
+  - first:
+      74: 5826912329545880808
+    second: send.003|waves displaceAction.002
+  - first:
+      74: -7637499777617997905
+    second: send.003|wheelAction
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
