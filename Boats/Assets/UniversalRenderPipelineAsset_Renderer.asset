@@ -17,7 +17,7 @@ MonoBehaviour:
   SSAOMaterial: {fileID: 2100000, guid: c7cdacdee26deba4294f95c25d21ee35, type: 2}
   SSAOBlurMaterial: {fileID: 2100000, guid: 2b4c89e7bfe9f8543bd64f0e325e5098, type: 2}
   SSAOCombineMaterial: {fileID: 2100000, guid: 8c901d80b77ea2e4288a802cf9048833, type: 2}
-  renderQueue: 550
+  renderQueue: 450
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

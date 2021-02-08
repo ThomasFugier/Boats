@@ -71,15 +71,15 @@ Material:
     m_Floats:
     - _AOIntensity: 1
     - _AlphaClip: 0
-    - _Area: 0.062
+    - _Area: 0.061
     - _Base: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ComplexNormals: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DepthCutoff: 0.082
-    - _DepthCutoffSmoothTransitionRange: 0
+    - _DepthCutoff: 0.213
+    - _DepthCutoffSmoothTransitionRange: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _Falloff: 10
@@ -88,14 +88,14 @@ Material:
     - _GlossyReflections: 0
     - _Intensity: 5.55
     - _Metallic: 0
-    - _OcclusionFactor: 0.05
+    - _OcclusionFactor: 0.44444445
     - _OcclusionStrength: 1
     - _QueueOffset: 0
-    - _Radius: 0.226
+    - _Radius: 0.147
     - _ReceiveShadows: 1
     - _ReconstructNormalsFromDepth: 1
-    - _SamplesCount: 56
-    - _SelfShadowingReduction: 1
+    - _SamplesCount: 39
+    - _SelfShadowingReduction: 0.299
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

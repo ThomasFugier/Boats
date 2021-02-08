@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RandomTexture: {fileID: 2800000, guid: cfb1900af6f519149a611f53b63217a1, type: 3}
   UseComplexNormalsReconstruction: 1
-  EffectEnabled: 0
-  SSAOColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
-  SamplesCount: 56
-  Radius: 0.226
-  SelfShadowingReduction: 1
-  AcceptableDepthDifference: 0.062
-  OcclusionFactor: 20
+  EffectEnabled: 1
+  SSAOColor: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
+  SamplesCount: 39
+  Radius: 0.147
+  SelfShadowingReduction: 0.299
+  AcceptableDepthDifference: 0.061
+  OcclusionFactor: 2.25
   Downsampling: 1
-  DepthCutoff: 0.082
-  DepthCutoffSmoothTransitionRange: 0
+  DepthCutoff: 0.213
+  DepthCutoffSmoothTransitionRange: 0.5
   BlurEnabled: 1
-  BlurIterations: 4
-  BlurRadius: 0.00204
-  BlurDepthFalloff: 0.94
-  AOIntensity: 4.41
+  BlurIterations: 3
+  BlurRadius: 0.00166
+  BlurDepthFalloff: 0.49
+  AOIntensity: 8.85
   ShowAOTextureOnly: 0
