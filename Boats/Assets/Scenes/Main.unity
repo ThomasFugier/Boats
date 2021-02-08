@@ -1596,15 +1596,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionParent: {fileID: 610353106}
   colliderReference: {fileID: 1866487389}
-  waterFlowSpeed: 0.51
-  tideScale: 0.187
-  tideWaveIntensity: 1.8
+  waterFlowSpeed: 0.94
+  tideScale: 0.116
+  tideWaveIntensity: 2.1
   collisionYOffset: -3.7
-  portStartAt: 7.2
-  vertexShoreHeight: 0.76
-  highSeaYOffset: 0.68
-  highSeaZOffset: 1.92
-  portFalloff: 0.06
+  portStartAt: 6.94
+  vertexShoreHeight: 1.88
+  highSeaYOffset: 1.13
+  highSeaZOffset: 1.5
+  portFalloff: 0.79
   waterPlane: {fileID: 1142484147}
 --- !u!1 &1866487389
 GameObject:

@@ -69,7 +69,7 @@ public class WaterManager : MonoBehaviour
 
             for (var i = 0; i < vertices.Length; i++)
             {
-                /*
+                
                 if(vertices[i].y < portStartAt)
                 {
                     vertices[i] = new Vector3(vertices[i].x, vertices[i].y, (Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity) + highSeaYOffset * Mathf.Clamp(Mathf.Abs(vertices[i].y - (portStartAt + highSeaZOffset)) * portFalloff, 0,1));
@@ -79,9 +79,9 @@ public class WaterManager : MonoBehaviour
                 {
                     vertices[i] = new Vector3(vertices[i].x, vertices[i].y, Mathf.Lerp(Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity, vertexShoreHeight, Mathf.Abs(vertices[i].y - (portStartAt - highSeaZOffset)) * portFalloff));
                 }
-                */
+                
 
-                vertices[i] = new Vector3(vertices[i].x, vertices[i].y, vertexShoreHeight + (Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity) + highSeaYOffset * Mathf.Clamp(Mathf.Abs(vertices[i].y - (portStartAt + highSeaZOffset)) * portFalloff, 0, 1));
+                
 
                 Vector3 pos = transform.TransformPoint(vertices[i]);
                 Vector3 finalPos = Vector3.zero;
