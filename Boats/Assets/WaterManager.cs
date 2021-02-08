@@ -10,26 +10,25 @@ public class WaterManager : MonoBehaviour
     public GameObject colliderReference;
     private List<GameObject> colliders = new List<GameObject>();
 
+    [Header("Configuration")]
+    [Space]
     [Range(0.00f, 10.00f)]
     public float waterFlowSpeed;
-    [Range(0.00f, 10.00f)]
+    [Range(0.00f, 0.7f)]
     public float tideScale;
-
-    [Range(0.00f, 5.00f)]
-    public float tideTime;
-    [Range(0.00f, 1f)]
-    public float tideIntensity;
     [Range(0.00f, 50f)]
     public float tideWaveIntensity;
-    public MeshRenderer waterPlane;
-
-    public Texture2D portWaterGradient;
-
     public float collisionYOffset;
-
-    [Header("Port")]
     public float portStartAt;
     public float vertexShoreHeight;
+    public float highSeaYOffset;
+    public float highSeaZOffset;
+    public float portFalloff;
+
+    [Header("References")]
+    [Space]
+    public MeshRenderer waterPlane;
+
 
     private Mesh mesh;
     private float[,] noise = new float[80,80];
@@ -72,12 +71,12 @@ public class WaterManager : MonoBehaviour
             {
                 if(vertices[i].y < portStartAt)
                 {
-                    vertices[i] = new Vector3(vertices[i].x, vertices[i].y, Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity);
+                    vertices[i] = new Vector3(vertices[i].x, vertices[i].y, (Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity) + highSeaYOffset * Mathf.Clamp(Mathf.Abs(vertices[i].y - (portStartAt + highSeaZOffset)) * portFalloff, 0,1));
                 }
 
                 else
                 {
-                    vertices[i] = new Vector3(vertices[i].x, vertices[i].y, Mathf.Lerp(Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity, vertexShoreHeight, Mathf.Abs(vertices[i].y - portStartAt) * 0.6f));
+                    vertices[i] = new Vector3(vertices[i].x, vertices[i].y, Mathf.Lerp(Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity, vertexShoreHeight, Mathf.Abs(vertices[i].y - (portStartAt - highSeaZOffset)) * portFalloff));
                 }
 
                 Vector3 pos = transform.TransformPoint(vertices[i]);
