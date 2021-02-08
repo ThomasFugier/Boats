@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     [Space]
     public float maxMotorForce;
     public float maxMotorTorque;
+    public float bounce_Factor;
+    public float bounce_CollisionMaxSource;
 
     private float nearestWaterY;
 
@@ -60,13 +62,13 @@ public class PlayerManager : MonoBehaviour
         if (y > 0)
         {
             this.GetComponent<Rigidbody>().AddForce(renderer.transform.forward * maxMotorForce * y);
-            Debug.Log("IsForward");
+   
         }
 
         if (x > 0.05f || x < -0.05f)
         {
             this.GetComponent<Rigidbody>().AddRelativeTorque(renderer.transform.up * maxMotorTorque * x);
-            Debug.Log("IsTurning");
+
         }
     }
 
@@ -101,5 +103,12 @@ public class PlayerManager : MonoBehaviour
         this.GetComponent<Buoyancy>().isInWater = false;
         this.GetComponent<Rigidbody>().mass = 1;
     }
+
+    public void BouncePlayer(PlayerManager player, Vector3 direction, float impactMagnitude)
+    {
+        //player.GetComponent<Rigidbody>().AddForce(direction * impactMagnitude * bounce_Factor, ForceMode.Impulse);
+    }
+
+    
 }
 

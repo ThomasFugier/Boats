@@ -665,12 +665,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562a517604850bd4b95f168521a6806a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIndex: 4
+  playerIndex: 0
   isInWater: 0
   renderer: {fileID: 2470315768370355804}
   playerOffset: {fileID: 4301362404881598532}
-  maxMotorForce: 2
+  maxMotorForce: 4
   maxMotorTorque: 5
+  bounce_Factor: 10
+  bounce_CollisionMaxSource: 0.5
   AI_LookAt: {fileID: 4301362404166919727}
   target_AI: {fileID: 0}
   actualBrainX: 0
@@ -689,7 +691,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &2109255962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,9 +766,11 @@ GameObject:
   - component: {fileID: 4301362404881598532}
   - component: {fileID: 4301362404881598530}
   - component: {fileID: 4301362404881598531}
+  - component: {fileID: 1553849930}
+  - component: {fileID: 1553849931}
   m_Layer: 0
   m_Name: PlayerOffset
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -898,6 +902,42 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1553849930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4301362404881598533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca9079eabafa5c46ad74ded4825de0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisPlayer: {fileID: 5223906866735472815}
+--- !u!114 &1553849931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4301362404881598533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cff3786ebc6c9c48a00a1299eb85dc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinCoef: 2
+  MinValue: 3
+  bumpMinimal: 1
+  bumpMax: 3
+  facteurSuperior: 5
+  facteurInferior: 4
+  facteurSuperiorMax: 10
+  facteurInferiorMax: 6
+  facteurEgg: 0
+  FacteurMinEgg: 0
+  Timer: 0.5
 --- !u!1 &4349293367524340546
 GameObject:
   m_ObjectHideFlags: 0
