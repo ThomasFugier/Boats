@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     public AI_LookAt AI_LookAt;
     public Transform target_AI;
     public float actualBrainX;
-
+    public float actualBrainY;
     void Start()
     {
         
@@ -57,6 +57,7 @@ public class PlayerManager : MonoBehaviour
             y = GetAIBrain_Y();
             x = GetAIBrain_X();
             actualBrainX = x;
+            actualBrainY = y;
         }
 
         if (y > 0)
@@ -80,12 +81,18 @@ public class PlayerManager : MonoBehaviour
 
         float angle = Mathf.Atan2(localTarget.x, localTarget.z) * Mathf.Rad2Deg;
 
+        
         return Mathf.Clamp(angle,-1,1);
     }
 
     public float GetAIBrain_Y()
     {
-        return Mathf.Clamp(Mathf.Abs(Vector3.Distance(this.transform.position, target_AI.transform.position)), -1, 1);
+        Vector3 thisPos = this.transform.position;
+        Vector3 targetPos = target_AI.transform.position;
+        thisPos.y = 0;
+        targetPos.y = 0;
+
+        return Mathf.Clamp(Vector3.Distance(thisPos, targetPos) / 3, -1, 1);
     }
 
     public void EnterInWater(float y)

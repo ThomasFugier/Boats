@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 8325069997715105609}
   - component: {fileID: 4472672459609266179}
   - component: {fileID: 2929903952874458668}
+  - component: {fileID: 5891797285869367240}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Player
@@ -368,8 +369,22 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.12, y: 1, z: 0.63}
+  m_Center: {x: 0, y: -0.34, z: 0.09}
+--- !u!136 &5891797285869367240
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880250490851563369}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.45
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.09, z: 0.06}
 --- !u!1 &3012228216339689587
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +691,7 @@ MonoBehaviour:
   AI_LookAt: {fileID: 4301362404166919727}
   target_AI: {fileID: 0}
   actualBrainX: 0
+  actualBrainY: 0
 --- !u!54 &2610013556005763568
 Rigidbody:
   m_ObjectHideFlags: 0

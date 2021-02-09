@@ -57,7 +57,7 @@ public class BumpPlayer : MonoBehaviour
 			Vector3 direction = collision.transform.position - trans.position;
 			direction.Normalize();
 
-			Debug.Log("Je vais te pousser vers " + direction);
+			//Debug.Log("Je vais te pousser vers " + direction);
 			Rigidbody rigidbodyCompCol = collision.gameObject.transform.parent.GetComponent<Rigidbody>();
 
 			float me = rigidbodyComp.velocity.magnitude < MinCoef ? MinCoef : rigidbodyComp.velocity.magnitude;
@@ -65,11 +65,11 @@ public class BumpPlayer : MonoBehaviour
 
 
 			float coefMagnitude = me - other;
-			Debug.Log("mon coef de magnitude apres reduction " + coefMagnitude);
+			//Debug.Log("mon coef de magnitude apres reduction " + coefMagnitude);
 
 			Vector3 forceCharacter = direction * rigidbodyComp.velocity.magnitude;
 			Vector3 forceCharacterOther = -direction * rigidbodyCompCol.velocity.magnitude;
-			Debug.Log("Magnitude de la force dans laquelle je vais te pousser " + forceCharacter.magnitude);
+			//Debug.Log("Magnitude de la force dans laquelle je vais te pousser " + forceCharacter.magnitude);
 
 
 			float forceCharsup;
@@ -93,13 +93,13 @@ public class BumpPlayer : MonoBehaviour
 			if (coefMagnitude > 0)
             {
 				rigidbodyCompCol.AddForce(forceCharacter * forceCharsup, ForceMode.Impulse);
-				Debug.Log("ici");
+				//Debug.Log("ici");
 			}
 				
 			else
             {
 				rigidbodyCompCol.AddForce(forceCharacter * forceCharinf, ForceMode.Impulse);
-				Debug.Log("ici2");
+				//Debug.Log("ici2");
 			}
 				
 

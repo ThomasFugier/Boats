@@ -14,16 +14,28 @@ public class WaterManager : MonoBehaviour
     [Space]
     [Range(0.00f, 10.00f)]
     public float waterFlowSpeed;
-    [Range(0.00f, 0.7f)]
-    public float tideScale;
-    [Range(0.00f, 50f)]
-    public float tideWaveIntensity;
+    [Range(-5f, 5f)]
+    public float globalSeaLevelFactor;
+    [Range(0, 10f)]
+    public float houleIntensity;
+    [Range(0, 10f)]
+    public float houleScale;
+    [Range(-1f, 1f)]
     public float collisionYOffset;
-    public float portStartAt;
-    public float vertexShoreHeight;
-    public float highSeaYOffset;
-    public float highSeaZOffset;
+    [Range(0, 1)]
+    public float tide;
+
+    public float tideMinPositionY;
+    public float tideMaxPositionY;
+
+    public float portFalloffPosition;
     public float portFalloff;
+    public float portHeight;
+
+    //public float vertexShoreHeight;
+    //public float highSeaYOffset;
+    //public float highSeaZOffset;
+    //public float portFalloff;
 
     [Header("References")]
     [Space]
@@ -33,6 +45,14 @@ public class WaterManager : MonoBehaviour
     private Mesh mesh;
     private float[,] noise = new float[80,80];
     private float waterActualX;
+    private float waterActualY;
+
+    private float nextHoule_X;
+    private float nextHoule_Y;
+    private float previousHoule_X;
+    private float previousHoule_Y;
+
+    public float houleInterpolationTimer;
 
     void Start()
     {
@@ -54,34 +74,63 @@ public class WaterManager : MonoBehaviour
         Destroy(colliderReference);
     }
 
+    public void GenerateNextHoule()
+    {
+        nextHoule_X += 2;
+        nextHoule_Y += 2;
+    }
+
     IEnumerator UpdateWater()
     {
-        
-        while(true)
+        GenerateNextHoule();
+
+        while (true)
         {
             yield return null;
-
 
             Vector3[] vertices = mesh.vertices;
             Vector3[] normals = mesh.normals;
 
-            waterActualX += Time.deltaTime * waterFlowSpeed;
+            //waterActualX += Time.deltaTime * waterFlowSpeed;
+
+            if(houleInterpolationTimer < waterFlowSpeed)
+            {
+                houleInterpolationTimer += Time.deltaTime;
+            }
+
+            else if(houleInterpolationTimer > waterFlowSpeed)
+            {
+                houleInterpolationTimer = 0;
+
+                GenerateNextHoule();
+                previousHoule_X = waterActualX;
+                previousHoule_Y = waterActualY;
+            }
+
+            waterActualX = Mathf.Lerp(previousHoule_X, nextHoule_X, houleInterpolationTimer / waterFlowSpeed);
+            waterActualY = Mathf.Lerp(previousHoule_Y, nextHoule_Y, houleInterpolationTimer / waterFlowSpeed);
 
             for (var i = 0; i < vertices.Length; i++)
             {
-                
-                if(vertices[i].y < portStartAt)
-                {
-                    vertices[i] = new Vector3(vertices[i].x, vertices[i].y, (Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity) + highSeaYOffset * Mathf.Clamp(Mathf.Abs(vertices[i].y - (portStartAt + highSeaZOffset)) * portFalloff, 0,1));
-                }
+                vertices[i] = new Vector3(vertices[i].x, vertices[i].y, (Mathf.PerlinNoise(((vertices[i].x) * houleScale), (vertices[i].y) * houleScale)) + globalSeaLevelFactor);
 
-                else
-                {
-                    vertices[i] = new Vector3(vertices[i].x, vertices[i].y, Mathf.Lerp(Mathf.PerlinNoise(((vertices[i].x + 100) * tideScale), (vertices[i].y + waterActualX) * tideScale) * tideWaveIntensity, vertexShoreHeight, Mathf.Abs(vertices[i].y - (portStartAt - highSeaZOffset)) * portFalloff));
-                }
-                
+                vertices[i].z += (Mathf.PerlinNoise(((vertices[i].x + Mathf.Lerp(previousHoule_X, nextHoule_X, houleInterpolationTimer / waterFlowSpeed)) * houleScale), (vertices[i].y + Mathf.Lerp(previousHoule_Y, nextHoule_Y, houleInterpolationTimer / waterFlowSpeed)) * houleScale) * (houleIntensity * tide));
+
+                Vector3 TEMP = vertices[i];
+                float fallOffCalulcation = 0;
+
+                fallOffCalulcation = Mathf.Lerp(portHeight,vertices[i].z,(portFalloffPosition - vertices[i].y) * portFalloff);
 
                 
+                TEMP.z = fallOffCalulcation;
+                TEMP.z -= Mathf.Lerp(tideMinPositionY, tideMaxPositionY, tide);
+                
+                vertices[i] = TEMP;
+
+                if (fallOffCalulcation < 0)
+                {
+                    fallOffCalulcation = 0;
+                }
 
                 Vector3 pos = transform.TransformPoint(vertices[i]);
                 Vector3 finalPos = Vector3.zero;
