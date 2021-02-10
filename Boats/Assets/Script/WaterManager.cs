@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class WaterManager : MonoBehaviour
 {
+    private static WaterManager _instance;
+
+    public static WaterManager Instance { get { return _instance; } }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
     private int meshLength = 73;
 
     public Transform collisionParent;
@@ -54,6 +71,10 @@ public class WaterManager : MonoBehaviour
 
     public float houleInterpolationTimer;
 
+    [HideInInspector]
+    public Vector3[] vertices;
+    Vector3[] normals;
+
     void Start()
     {
         mesh = Instantiate(waterPlane.GetComponent<MeshFilter>().mesh);
@@ -88,8 +109,8 @@ public class WaterManager : MonoBehaviour
         {
             yield return null;
 
-            Vector3[] vertices = mesh.vertices;
-            Vector3[] normals = mesh.normals;
+            vertices = mesh.vertices;
+            normals = mesh.normals;
 
             //waterActualX += Time.deltaTime * waterFlowSpeed;
 
@@ -113,18 +134,17 @@ public class WaterManager : MonoBehaviour
             for (var i = 0; i < vertices.Length; i++)
             {
                 vertices[i] = new Vector3(vertices[i].x, vertices[i].y, (Mathf.PerlinNoise(((vertices[i].x) * houleScale), (vertices[i].y) * houleScale)) + globalSeaLevelFactor);
-
                 vertices[i].z += (Mathf.PerlinNoise(((vertices[i].x + Mathf.Lerp(previousHoule_X, nextHoule_X, houleInterpolationTimer / waterFlowSpeed)) * houleScale), (vertices[i].y + Mathf.Lerp(previousHoule_Y, nextHoule_Y, houleInterpolationTimer / waterFlowSpeed)) * houleScale) * (houleIntensity * tide));
 
                 Vector3 TEMP = vertices[i];
                 float fallOffCalulcation = 0;
 
-                fallOffCalulcation = Mathf.Lerp(portHeight,vertices[i].z,(portFalloffPosition - vertices[i].y) * portFalloff);
+                fallOffCalulcation = Mathf.Lerp(portHeight, vertices[i].z, (portFalloffPosition - vertices[i].y) * portFalloff);
 
-                
+
                 TEMP.z = fallOffCalulcation;
                 TEMP.z -= Mathf.Lerp(tideMinPositionY, tideMaxPositionY, tide);
-                
+
                 vertices[i] = TEMP;
 
                 if (fallOffCalulcation < 0)
@@ -138,7 +158,7 @@ public class WaterManager : MonoBehaviour
                 finalPos.z = pos.y;
                 finalPos.y = pos.z;
 
-                colliders[i].transform.position = finalPos + new Vector3(0, collisionYOffset, 0);
+                colliders[i].transform.position = finalPos + new Vector3(0, collisionYOffset, 0); 
             }
 
             waterPlane.GetComponent<MeshFilter>().mesh.vertices = vertices;

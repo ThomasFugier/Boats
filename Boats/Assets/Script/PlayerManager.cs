@@ -45,16 +45,17 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         UpdatePlayerIndex();
+
+        playerCanvas.transform.parent = null;
     }
 
     public void Update()
     {
         ProcessInputs();
 
-        playerCanvas.transform.LookAt(Camera.main.transform);
-        Vector3 TEMP = playerCanvas.transform.eulerAngles;
-        TEMP.y = 0;
-        playerCanvas.transform.eulerAngles = TEMP;
+        RectTransform myRect = playerCanvas.transform.GetChild(0).transform.GetComponent<RectTransform>();
+        Vector2 myPositionOnScreen = Camera.main.WorldToScreenPoint(this.transform.position);
+        myRect.anchoredPosition = myPositionOnScreen - playerCanvas.GetComponent<RectTransform>().anchoredPosition;
     }
 
     public void ProcessInputs()
