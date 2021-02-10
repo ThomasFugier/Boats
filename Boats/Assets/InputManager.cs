@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
     public string playerDenomination = "Controller";
     public string xJoystick = "Joystick_X";
     public string yJoystick = "Joystick_Y";
-
+    public string mainInput = "Main";
 
     private void Awake()
     {
@@ -77,5 +77,31 @@ public class InputManager : MonoBehaviour
         }
 
         return Input.GetAxis((playerDenomination + i + "_" + yJoystick));
+    }
+
+    public bool GetJoystickButton_Main(PlayerIndex playerIndex)
+    {
+        string i = "";
+
+        switch (playerIndex)
+        {
+            case PlayerIndex.Player1:
+                i = "1";
+                break;
+
+            case PlayerIndex.Player2:
+                i = "2";
+                break;
+
+            case PlayerIndex.Player3:
+                i = "3";
+                break;
+
+            case PlayerIndex.Player4:
+                i = "4";
+                break;
+        }
+
+        return Input.GetButton((playerDenomination + i + "_" + mainInput));
     }
 }

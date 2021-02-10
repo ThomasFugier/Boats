@@ -10,6 +10,12 @@ public class PlayerManager : MonoBehaviour
     [Space]
     public PlayerIndex playerIndex;
     public bool isInWater = false;
+    public bool isInFishZone = false;
+    public bool isFishing = false;
+
+    [Header("Inventory")]
+    [Space]
+    public int fishAmount;
 
     [Header("References")]
     [Space]
@@ -34,12 +40,24 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Internal UI References")]
     [Space]
+    public UnityEngine.UI.Text text_fishAmount;
     public Canvas playerCanvas;
     public UnityEngine.UI.Text text_playerName;
+    public InputTooltip InputTooltip_mainInput;
+
+    [HideInInspector]
+    public Fishzone actualFishzone;
+
+    private float fishingTimer;
 
     public void UpdatePlayerIndex()
     {
         text_playerName.text = playerIndex.ToString();
+    }
+
+    public void UpdateInventory()
+    {
+        text_fishAmount.text = fishAmount.ToString();
     }
 
     void Start()
@@ -52,9 +70,11 @@ public class PlayerManager : MonoBehaviour
     public void Update()
     {
         ProcessInputs();
+        UpdateInventory();
 
         RectTransform myRect = playerCanvas.transform.GetChild(0).transform.GetComponent<RectTransform>();
         Vector2 myPositionOnScreen = Camera.main.WorldToScreenPoint(this.transform.position);
+        myPositionOnScreen.y += 50;
         myRect.anchoredPosition = myPositionOnScreen - playerCanvas.GetComponent<RectTransform>().anchoredPosition;
     }
 
@@ -62,11 +82,13 @@ public class PlayerManager : MonoBehaviour
     {
         float y = 0;
         float x = 0;
+        bool mainButton = false;
 
         if(playerIndex != PlayerIndex.AI)
         {
             y = InputManager.Instance.GetJoystickAxis_Y(playerIndex);
             x = InputManager.Instance.GetJoystickAxis_X(playerIndex);
+            mainButton = InputManager.Instance.GetJoystickButton_Main(playerIndex);
         }
 
         else
@@ -87,6 +109,68 @@ public class PlayerManager : MonoBehaviour
         {
             this.GetComponent<Rigidbody>().AddRelativeTorque(renderer.transform.up * maxMotorTorque * x);
 
+        }
+
+        if(mainButton)
+        {
+            PressingOnMainButton();
+        }
+
+        else
+        {
+            if(actualFishzone)
+            {
+                StopFishing();
+            }
+            
+        }
+    }
+
+    public void PressingOnMainButton()
+    {
+        if(isInFishZone)
+        {
+            Fish();
+        }
+    }
+
+    public void Fish()
+    {
+        if(actualFishzone)
+        {
+            if (actualFishzone.canBeFished)
+            {
+                isFishing = true;
+                fishingTimer += Time.deltaTime;
+                InputTooltip_mainInput.filler.fillAmount = fishingTimer / actualFishzone.requiredTimeToCatch;
+
+                if (fishingTimer > actualFishzone.requiredTimeToCatch)
+                {
+                    GatherFishing(actualFishzone);
+                }
+            }
+
+            else
+            {
+                StopFishing();
+            }
+        } 
+    }
+
+    public void GatherFishing(Fishzone fishzone)
+    {
+        fishAmount += fishzone.fishAmount;
+        fishzone.DestroyFishZone();
+        StopFishing();
+    }
+
+    public void StopFishing()
+    {
+        if(actualFishzone)
+        {
+            isFishing = false;
+            fishingTimer = 0;
+            InputTooltip_mainInput.filler.fillAmount = fishingTimer / actualFishzone.requiredTimeToCatch;
         }
     }
 
@@ -133,6 +217,19 @@ public class PlayerManager : MonoBehaviour
         //player.GetComponent<Rigidbody>().AddForce(direction * impactMagnitude * bounce_Factor, ForceMode.Impulse);
     }
 
-    
+    public void EnterInFishZone(Fishzone fishzone)
+    {
+        actualFishzone = fishzone;
+        isInFishZone = true;
+        InputTooltip_mainInput.gameObject.SetActive(true);
+    }
+
+    public void ExitFromFishZone()
+    {
+        actualFishzone = null;
+        isInFishZone = false;
+        StopFishing();
+        InputTooltip_mainInput.gameObject.SetActive(false);
+    }
 }
 
