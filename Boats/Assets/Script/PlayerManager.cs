@@ -31,14 +31,30 @@ public class PlayerManager : MonoBehaviour
     public Transform target_AI;
     public float actualBrainX;
     public float actualBrainY;
+
+    [Header("Internal UI References")]
+    [Space]
+    public Canvas playerCanvas;
+    public UnityEngine.UI.Text text_playerName;
+
+    public void UpdatePlayerIndex()
+    {
+        text_playerName.text = playerIndex.ToString();
+    }
+
     void Start()
     {
-        
+        UpdatePlayerIndex();
     }
 
     public void Update()
     {
         ProcessInputs();
+
+        playerCanvas.transform.LookAt(Camera.main.transform);
+        Vector3 TEMP = playerCanvas.transform.eulerAngles;
+        TEMP.y = 0;
+        playerCanvas.transform.eulerAngles = TEMP;
     }
 
     public void ProcessInputs()
