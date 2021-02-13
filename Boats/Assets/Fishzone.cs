@@ -70,6 +70,7 @@ public class Fishzone : MonoBehaviour
     {
         FX.GetComponent<ParticleSystem>().Stop();
         yield return new WaitForSeconds(2);
+        GameManager.Instance.gameplayManager.fishzones.Remove(this);
         Destroy(this.gameObject);
 
     }

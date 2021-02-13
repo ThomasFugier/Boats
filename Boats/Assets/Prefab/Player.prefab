@@ -1520,9 +1520,13 @@ MonoBehaviour:
   isInWater: 0
   isInFishZone: 0
   isFishing: 0
+  state: 1
+  actualDock: {fileID: 0}
+  money: 0
   fishAmount: 0
   renderer: {fileID: 2470315768370355804}
   playerOffset: {fileID: 4301362404881598532}
+  speedToDock: 0.5
   maxMotorForce: 4
   maxMotorTorque: 5
   bounce_Factor: 10

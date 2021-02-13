@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum PlayerIndex {Player1, Player2, Player3, Player4, AI};
+public enum State {Docked, InSea};
 
 public class PlayerManager : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class PlayerManager : MonoBehaviour
     public bool isInWater = false;
     public bool isInFishZone = false;
     public bool isFishing = false;
+    public State state;
+    public Dock actualDock;
 
     [Header("Inventory")]
     [Space]
+    public int money;
     public int fishAmount;
 
     [Header("References")]
@@ -24,6 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Configuration")]
     [Space]
+    public float speedToDock;
     public float maxMotorForce;
     public float maxMotorTorque;
     public float bounce_Factor;
@@ -48,7 +53,11 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public Fishzone actualFishzone;
 
-    private float fishingTimer;
+    private float mainInteractionTimer;
+
+    //Inputs
+    private bool mainInputLocked = false;
+    private bool mainInput;
 
     public void UpdatePlayerIndex()
     {
@@ -67,11 +76,27 @@ public class PlayerManager : MonoBehaviour
         playerCanvas.transform.parent = null;
     }
 
+    public void UpdateTooltips()
+    {
+        InputTooltip_mainInput.filler.fillAmount = mainInteractionTimer;
+
+        if (mainInput == false)
+        {
+            mainInteractionTimer = Mathf.Lerp(mainInteractionTimer, 0, Time.deltaTime * 3);
+        }
+    }
+
     public void Update()
     {
         ProcessInputs();
         UpdateInventory();
+        UpdateCanvasPosition();
+        UpdateTooltips();
+        PlayerHaptics();
+    }
 
+    public void UpdateCanvasPosition()
+    {
         RectTransform myRect = playerCanvas.transform.GetChild(0).transform.GetComponent<RectTransform>();
         Vector2 myPositionOnScreen = Camera.main.WorldToScreenPoint(this.transform.position);
         myPositionOnScreen.y += 50;
@@ -82,13 +107,13 @@ public class PlayerManager : MonoBehaviour
     {
         float y = 0;
         float x = 0;
-        bool mainButton = false;
+        mainInput = false;
 
         if(playerIndex != PlayerIndex.AI)
         {
             y = InputManager.Instance.GetJoystickAxis_Y(playerIndex);
             x = InputManager.Instance.GetJoystickAxis_X(playerIndex);
-            mainButton = InputManager.Instance.GetJoystickButton_Main(playerIndex);
+            mainInput = InputManager.Instance.GetJoystickButton_Main(playerIndex);
         }
 
         else
@@ -111,7 +136,7 @@ public class PlayerManager : MonoBehaviour
 
         }
 
-        if(mainButton)
+        if(mainInput)
         {
             PressingOnMainButton();
         }
@@ -124,6 +149,8 @@ public class PlayerManager : MonoBehaviour
             }
             
         }
+
+        mainInteractionTimer = Mathf.Clamp(mainInteractionTimer, 0, 1);
     }
 
     public void PressingOnMainButton()
@@ -131,6 +158,11 @@ public class PlayerManager : MonoBehaviour
         if(isInFishZone)
         {
             Fish();
+        }
+
+        if(state == State.Docked)
+        {
+            RequestUseDock();
         }
     }
 
@@ -141,10 +173,10 @@ public class PlayerManager : MonoBehaviour
             if (actualFishzone.canBeFished)
             {
                 isFishing = true;
-                fishingTimer += Time.deltaTime;
-                InputTooltip_mainInput.filler.fillAmount = fishingTimer / actualFishzone.requiredTimeToCatch;
+                mainInteractionTimer += Time.deltaTime * actualFishzone.requiredTimeToCatch;
+                InputTooltip_mainInput.filler.fillAmount = mainInteractionTimer / 1;
 
-                if (fishingTimer > actualFishzone.requiredTimeToCatch)
+                if (mainInteractionTimer > 1)
                 {
                     GatherFishing(actualFishzone);
                 }
@@ -169,9 +201,23 @@ public class PlayerManager : MonoBehaviour
         if(actualFishzone)
         {
             isFishing = false;
-            fishingTimer = 0;
-            InputTooltip_mainInput.filler.fillAmount = fishingTimer / actualFishzone.requiredTimeToCatch;
+            StartCoroutine(LockMainInputForSeconds(0.5f));
         }
+    }
+
+    public void StopDocking()
+    {
+        if (actualDock != null)
+        {
+            StartCoroutine(LockMainInputForSeconds(0.5f));
+        }
+    }
+
+    IEnumerator LockMainInputForSeconds(float delay)
+    {
+        mainInputLocked = true;
+        yield return new WaitForSeconds(1);
+        mainInputLocked = false;
     }
 
     public float GetAIBrain_X()
@@ -217,11 +263,21 @@ public class PlayerManager : MonoBehaviour
         //player.GetComponent<Rigidbody>().AddForce(direction * impactMagnitude * bounce_Factor, ForceMode.Impulse);
     }
 
+    public void EnableMainTooltip()
+    {
+        InputTooltip_mainInput.gameObject.SetActive(true);
+    }
+
+    public void DisableMainTooltip()
+    {
+        InputTooltip_mainInput.gameObject.SetActive(false);
+    }
+
     public void EnterInFishZone(Fishzone fishzone)
     {
         actualFishzone = fishzone;
         isInFishZone = true;
-        InputTooltip_mainInput.gameObject.SetActive(true);
+        EnableMainTooltip();
     }
 
     public void ExitFromFishZone()
@@ -229,7 +285,77 @@ public class PlayerManager : MonoBehaviour
         actualFishzone = null;
         isInFishZone = false;
         StopFishing();
-        InputTooltip_mainInput.gameObject.SetActive(false);
+        DisableMainTooltip();
+    }
+
+    public void SellFish()
+    {
+        Earn(fishAmount * GameManager.Instance.gameplayManager.moneyPerFish);
+        fishAmount = 0;
+        DisableMainTooltip();
+    }
+
+    public void Earn(int howMuch)
+    {
+        money += howMuch;
+    }
+
+    public void RequestUseDock()
+    {
+        if(actualDock.dockType == Dock.DockType.Fish && fishAmount > 0)
+        {
+               mainInteractionTimer += Time.deltaTime * speedToDock;
+
+               InputTooltip_mainInput.filler.fillAmount = mainInteractionTimer / 1;
+
+                if (mainInteractionTimer > 1)
+                {
+                    SellFish();
+                }
+
+
+                else
+                {
+                    StopDocking();
+                }
+        }
+    }
+
+    public void SetDockState(State newState, Dock dock)
+    {
+        state = newState;
+        actualDock = dock;
+
+        if(state == State.Docked)
+        {
+            if (dock.dockType == Dock.DockType.Fish && fishAmount > 0)
+            {
+                EnableMainTooltip();
+            }
+        }
+       
+        else
+        {
+            DisableMainTooltip();
+        }
+    }
+
+    public void PlayerHaptics()
+    {
+        float lowMotor = 0;
+        float highMotor = 0;
+
+        if(InputTooltip_mainInput.gameObject.activeSelf)
+        {
+            highMotor = mainInteractionTimer;
+        }
+       
+        if(InputManager.Instance.GetJoystickAxis_Y(playerIndex) > 0)
+        {
+            lowMotor = InputManager.Instance.GetJoystickAxis_Y(playerIndex) * GameManager.Instance.GetComponent<XInputTestCS>().motorFactor;
+        }
+
+        GameManager.Instance.GetComponent<XInputTestCS>().Haptic(playerIndex, lowMotor, highMotor);
     }
 }
 

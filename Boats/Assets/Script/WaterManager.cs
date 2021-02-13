@@ -49,6 +49,8 @@ public class WaterManager : MonoBehaviour
     public float portFalloff;
     public float portHeight;
 
+    public List<WaterZone> waterZones = new List<WaterZone>();
+
     //public float vertexShoreHeight;
     //public float highSeaYOffset;
     //public float highSeaZOffset;
@@ -57,7 +59,8 @@ public class WaterManager : MonoBehaviour
     [Header("References")]
     [Space]
     public MeshRenderer waterPlane;
-
+    public GameObject waterPlaneRight;
+    public GameObject waterPlaneLeft;
 
     private Mesh mesh;
     private float[,] noise = new float[80,80];
@@ -69,7 +72,7 @@ public class WaterManager : MonoBehaviour
     private float previousHoule_X;
     private float previousHoule_Y;
 
-    public float houleInterpolationTimer;
+    private float houleInterpolationTimer;
 
     [HideInInspector]
     public Vector3[] vertices;
@@ -79,8 +82,8 @@ public class WaterManager : MonoBehaviour
     {
         mesh = Instantiate(waterPlane.GetComponent<MeshFilter>().mesh);
         waterPlane.GetComponent<MeshFilter>().mesh = mesh;
-
-
+        waterPlaneRight.GetComponent<MeshFilter>().mesh = mesh;
+        waterPlaneLeft.GetComponent<MeshFilter>().mesh = mesh;
         StartCoroutine(UpdateWater());
 
         //Instantiating water colliders
@@ -141,11 +144,30 @@ public class WaterManager : MonoBehaviour
 
                 fallOffCalulcation = Mathf.Lerp(portHeight, vertices[i].z, (portFalloffPosition - vertices[i].y) * portFalloff);
 
-
                 TEMP.z = fallOffCalulcation;
                 TEMP.z -= Mathf.Lerp(tideMinPositionY, tideMaxPositionY, tide);
 
                 vertices[i] = TEMP;
+
+                
+                if(waterZones.Count > 0)
+                {
+                    
+                    for(int j = 0; j < waterZones.Count; j++)
+                    {
+                        var transformMatrix = waterPlane.transform.localToWorldMatrix;
+                        Vector3 testedVertice = transformMatrix.MultiplyPoint3x4(vertices[i]);
+                        testedVertice = testedVertice / 2;
+
+                        if (waterZones[j].GetComponent<Collider>().bounds.Contains(transform.TransformPoint(testedVertice)))
+                        {
+                            Vector3 v = vertices[i];
+                            v.z = waterZones[j].transform.position.y;
+                            vertices[i] = v;
+                            break;
+                        }
+                    } 
+                } 
 
                 if (fallOffCalulcation < 0)
                 {
@@ -162,6 +184,11 @@ public class WaterManager : MonoBehaviour
             }
 
             waterPlane.GetComponent<MeshFilter>().mesh.vertices = vertices;
+            waterPlane.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+            waterPlaneRight.GetComponent<MeshFilter>().mesh.vertices = vertices;
+            waterPlaneRight.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+            waterPlaneLeft.GetComponent<MeshFilter>().mesh.vertices = vertices;
+            waterPlaneLeft.GetComponent<MeshFilter>().mesh.RecalculateNormals();
         }
     }
 
