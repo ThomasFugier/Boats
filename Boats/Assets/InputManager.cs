@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
     public string yJoystick = "Joystick_Y";
     public string mainInput = "Main";
     public string secondaryInput = "Secondary";
+    public string leftFrontInput = "FrontLeft";
+    public string rightFrontInput = "FrontRight";
 
     private void Awake()
     {
@@ -130,5 +132,57 @@ public class InputManager : MonoBehaviour
         }
 
         return Input.GetButton(playerDenomination + i + "_" + secondaryInput);
+    }
+
+    public bool GetJoystickButton_FrontLeft(PlayerIndex playerIndex)
+    {
+        string i = "";
+
+        switch (playerIndex)
+        {
+            case PlayerIndex.Player1:
+                i = "1";
+                break;
+
+            case PlayerIndex.Player2:
+                i = "2";
+                break;
+
+            case PlayerIndex.Player3:
+                i = "3";
+                break;
+
+            case PlayerIndex.Player4:
+                i = "4";
+                break;
+        }
+
+        return Input.GetButton(playerDenomination + i + "_" + leftFrontInput);
+    }
+
+    public bool GetJoystickButton_FrontRight(PlayerIndex playerIndex)
+    {
+        string i = "";
+
+        switch (playerIndex)
+        {
+            case PlayerIndex.Player1:
+                i = "1";
+                break;
+
+            case PlayerIndex.Player2:
+                i = "2";
+                break;
+
+            case PlayerIndex.Player3:
+                i = "3";
+                break;
+
+            case PlayerIndex.Player4:
+                i = "4";
+                break;
+        }
+
+        return Input.GetButton(playerDenomination + i + "_" + rightFrontInput);
     }
 }

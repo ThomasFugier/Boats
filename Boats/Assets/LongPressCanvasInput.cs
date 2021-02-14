@@ -7,6 +7,7 @@ public class LongPressCanvasInput : MonoBehaviour
 {
     public enum ButtonType {MainButton, SecondaryButton};
 
+    public PlayerIndex playerIndex;
     public ButtonType button;
     public float speedPress = 2;
     public UnityEngine.UI.Image filler;
@@ -14,6 +15,8 @@ public class LongPressCanvasInput : MonoBehaviour
     private float timer;
 
     public UnityEvent OnButtonFinishedToBePressed;
+
+    public bool buttonLocked = false;
 
     public void Update()
     {
@@ -23,7 +26,7 @@ public class LongPressCanvasInput : MonoBehaviour
 
         if(button == ButtonType.MainButton)
         {
-            if(InputManager.Instance.GetJoystickButton_Main(PlayerIndex.Player1))
+            if(InputManager.Instance.GetJoystickButton_Main(playerIndex))
             {
                 ButtonPressed();
             }
@@ -36,7 +39,7 @@ public class LongPressCanvasInput : MonoBehaviour
 
         else if (button == ButtonType.SecondaryButton)
         {
-            if (InputManager.Instance.GetJoystickButton_Secondary(PlayerIndex.Player1))
+            if (InputManager.Instance.GetJoystickButton_Secondary(playerIndex))
             {
                 ButtonPressed();
             }
@@ -50,16 +53,22 @@ public class LongPressCanvasInput : MonoBehaviour
 
     public void ButtonPressed()
     {
-        timer += Time.deltaTime * speedPress;
-
-        if(timer >= 1)
+        if(buttonLocked == false)
         {
-            OnButtonFinishedToBePressed.Invoke();
+            timer += Time.deltaTime * speedPress;
+
+            if (timer >= 1)
+            {
+                OnButtonFinishedToBePressed.Invoke();
+                buttonLocked = true;
+            }
         }
+        
     }
 
     public void ButtonNotPressed()
     {
+         buttonLocked = false;
          timer = Mathf.Lerp(timer, 0, Time.deltaTime * 3);
     }
 }

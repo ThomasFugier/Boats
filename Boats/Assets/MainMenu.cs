@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
 
     public MenuUsageType usage;
 
+    [Header("References")]
+    public GameObject panel_mainMenu;
+    public GameObject panel_playerSelection;
+
     [Header("First Selected")]
     public GameObject firstSelected_MainMenu;
 
@@ -33,6 +37,17 @@ public class MainMenu : MonoBehaviour
         {
             usage = MenuUsageType.Controller;
         }
+    }
+
+    public void backFromPlayerSelection()
+    {
+        SetPanelState(true, panel_mainMenu);
+        SetPanelState(false, panel_playerSelection);
+    }
+
+    public void SetPanelState(bool state, GameObject panel)
+    {
+        panel.SetActive(state);
     }
 
     private void OnEnable()
