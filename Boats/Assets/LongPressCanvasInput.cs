@@ -7,6 +7,8 @@ public class LongPressCanvasInput : MonoBehaviour
 {
     public enum ButtonType {MainButton, SecondaryButton};
 
+    public bool canBeUsedByEveryone = false;
+
     public PlayerIndex playerIndex;
     public ButtonType button;
     public float speedPress = 2;
@@ -26,27 +28,60 @@ public class LongPressCanvasInput : MonoBehaviour
 
         if(button == ButtonType.MainButton)
         {
-            if(InputManager.Instance.GetJoystickButton_Main(playerIndex))
+            if(canBeUsedByEveryone)
             {
-                ButtonPressed();
+                if (InputManager.Instance.GetJoystickButton_Main(PlayerIndex.Anyone))
+                {
+                    ButtonPressed();
+                }
+
+                else
+                {
+                    ButtonNotPressed();
+                }
             }
 
             else
             {
-                ButtonNotPressed();
+                if (InputManager.Instance.GetJoystickButton_Main(playerIndex))
+                {
+                    ButtonPressed();
+                }
+
+                else
+                {
+                    ButtonNotPressed();
+                }
             }
+           
         }
 
         else if (button == ButtonType.SecondaryButton)
         {
-            if (InputManager.Instance.GetJoystickButton_Secondary(playerIndex))
+            if (canBeUsedByEveryone)
             {
-                ButtonPressed();
+                if (InputManager.Instance.GetJoystickButton_Secondary(PlayerIndex.Anyone))
+                {
+                    ButtonPressed();
+                }
+
+                else
+                {
+                    ButtonNotPressed();
+                }
             }
 
             else
             {
-                ButtonNotPressed();
+                if (InputManager.Instance.GetJoystickButton_Secondary(playerIndex))
+                {
+                    ButtonPressed();
+                }
+
+                else
+                {
+                    ButtonNotPressed();
+                }
             }
         }
     }

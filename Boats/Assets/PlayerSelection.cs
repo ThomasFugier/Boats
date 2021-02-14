@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerSelection : MonoBehaviour
 {
+    public MainMenu mainMenu;
+
     [Header("Informations")]
     public bool playerJoined_1;
     public bool playerJoined_2;
@@ -13,6 +15,10 @@ public class PlayerSelection : MonoBehaviour
     public bool playerReady_2;
     public bool playerReady_3;
     public bool playerReady_4;
+    public bool playerIsAI_1;
+    public bool playerIsAI_2;
+    public bool playerIsAI_3;
+    public bool playerIsAI_4;
 
     [Header("References")]
     public PlayerSlot slot_1;
@@ -23,6 +29,11 @@ public class PlayerSelection : MonoBehaviour
     [Header("UI References")]
     public GameObject playerMinimumDisplay;
     public GameObject backToMenuButtonBlock;
+    public GameObject countdownParent;
+    public UnityEngine.UI.Text countdownValue;
+
+    private bool isCountdowning;
+    private float countdown;
 
     public void Update()
     {
@@ -77,11 +88,52 @@ public class PlayerSelection : MonoBehaviour
         if(i > 1)
         {
             playerMinimumDisplay.SetActive(false);
+
+            bool canGameBeStarted = true;
+
+            if(playerJoined_1 && playerReady_1 == false)
+            {
+                canGameBeStarted = false;
+            }
+
+            if (playerJoined_2 && playerReady_2 == false)
+            {
+                canGameBeStarted = false;
+            }
+
+            if (playerJoined_2 && playerReady_2 == false)
+            {
+                canGameBeStarted = false;
+            }
+
+            if (playerJoined_2 && playerReady_2 == false)
+            {
+                canGameBeStarted = false;
+            }
+
+            if(canGameBeStarted && countdownParent.activeSelf == false)
+            {
+                countdownParent.SetActive(true);
+                isCountdowning = true;
+                countdown = 3;
+            }
         }
 
         else
         {
             playerMinimumDisplay.SetActive(true);
+        } 
+
+        if(isCountdowning)
+        {
+            countdown -= Time.deltaTime;
+            countdownValue.text = Mathf.RoundToInt(countdown).ToString();
+
+            if(countdown < 0)
+            {
+                GameManager.Instance.StartGameplay();
+                mainMenu.GoToGameplay();
+            }
         }
     }
 
@@ -187,5 +239,8 @@ public class PlayerSelection : MonoBehaviour
                 playerReady_4 = false;
                 break;
         }
+
+        countdownParent.SetActive(false);
+        isCountdowning = false;
     }
 }

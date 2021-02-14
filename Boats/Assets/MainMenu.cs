@@ -45,6 +45,17 @@ public class MainMenu : MonoBehaviour
         SetPanelState(false, panel_playerSelection);
     }
 
+    public void GoToPlayerSelection()
+    {
+        SetPanelState(false, panel_mainMenu);
+        SetPanelState(true, panel_playerSelection);
+    }
+
+    public void GoToGameplay()
+    {
+        SetPanelState(false, panel_playerSelection);
+    }
+
     public void SetPanelState(bool state, GameObject panel)
     {
         panel.SetActive(state);

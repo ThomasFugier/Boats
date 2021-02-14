@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerIndex {Player1, Player2, Player3, Player4, AI};
+public enum PlayerIndex {Player1, Player2, Player3, Player4, AI, Anyone};
 public enum State {Docked, InSea};
 
 public class PlayerManager : MonoBehaviour

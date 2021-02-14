@@ -103,9 +103,37 @@ public class InputManager : MonoBehaviour
             case PlayerIndex.Player4:
                 i = "4";
                 break;
+
+            case PlayerIndex.Anyone:
+                if(Input.GetButton(playerDenomination + 1 + "_" + mainInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + mainInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 3 + "_" + mainInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + mainInput))
+                {
+                    return true;
+                }
+
+                break;
         }
 
-        return Input.GetButton(playerDenomination + i + "_" + mainInput);
+        if (playerIndex != PlayerIndex.Anyone)
+        {
+            return Input.GetButton(playerDenomination + i + "_" + mainInput);
+        }
+
+        return false;
     }
 
     public bool GetJoystickButton_Secondary(PlayerIndex playerIndex)
@@ -129,9 +157,37 @@ public class InputManager : MonoBehaviour
             case PlayerIndex.Player4:
                 i = "4";
                 break;
+
+            case PlayerIndex.Anyone:
+                if (Input.GetButton(playerDenomination + 1 + "_" + secondaryInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + secondaryInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 3 + "_" + secondaryInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + secondaryInput))
+                {
+                    return true;
+                }
+                break;
         }
 
-        return Input.GetButton(playerDenomination + i + "_" + secondaryInput);
+
+        if(playerIndex != PlayerIndex.Anyone)
+        {
+            return Input.GetButton(playerDenomination + i + "_" + secondaryInput);
+        }
+
+        return false;
     }
 
     public bool GetJoystickButton_FrontLeft(PlayerIndex playerIndex)
@@ -155,9 +211,36 @@ public class InputManager : MonoBehaviour
             case PlayerIndex.Player4:
                 i = "4";
                 break;
+
+            case PlayerIndex.Anyone:
+                if (Input.GetButton(playerDenomination + 1 + "_" + leftFrontInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + leftFrontInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 3 + "_" + leftFrontInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + leftFrontInput))
+                {
+                    return true;
+                }
+                break;
         }
 
-        return Input.GetButton(playerDenomination + i + "_" + leftFrontInput);
+        if (playerIndex != PlayerIndex.Anyone)
+        {
+            return Input.GetButton(playerDenomination + i + "_" + leftFrontInput);
+        }
+
+        return false;
     }
 
     public bool GetJoystickButton_FrontRight(PlayerIndex playerIndex)
@@ -181,8 +264,35 @@ public class InputManager : MonoBehaviour
             case PlayerIndex.Player4:
                 i = "4";
                 break;
+
+            case PlayerIndex.Anyone:
+                if (Input.GetButton(playerDenomination + 1 + "_" + rightFrontInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + rightFrontInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 3 + "_" + rightFrontInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + rightFrontInput))
+                {
+                    return true;
+                }
+                break;
         }
 
-        return Input.GetButton(playerDenomination + i + "_" + rightFrontInput);
+        if (playerIndex != PlayerIndex.Anyone)
+        {
+            return Input.GetButton(playerDenomination + i + "_" + rightFrontInput);
+        }
+
+        return false;
     }
 }
