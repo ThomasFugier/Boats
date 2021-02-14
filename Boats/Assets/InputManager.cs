@@ -102,6 +102,6 @@ public class InputManager : MonoBehaviour
                 break;
         }
 
-        return Input.GetButton((playerDenomination + i + "_" + mainInput));
+        return Input.GetButton(playerDenomination + i + "_" + mainInput);
     }
 }

@@ -86,7 +86,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Controller2_Joystick_Main
+    m_Name: Controller3_Joystick_Main
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
