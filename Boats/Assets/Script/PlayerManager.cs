@@ -105,9 +105,6 @@ public class PlayerManager : MonoBehaviour
 
     public void ProcessInputs()
     {
-        Debug.Log("Player 1 " + InputManager.Instance.GetJoystickButton_Main(PlayerIndex.Player1));
-        Debug.Log("Player 2 " + InputManager.Instance.GetJoystickButton_Main(PlayerIndex.Player2));
-
         float y = 0;
         float x = 0;
         mainInput = false;
