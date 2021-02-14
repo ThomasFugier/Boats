@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MainMenu : MonoBehaviour
 
     [Header("First Selected")]
     public GameObject firstSelected_MainMenu;
+    public GameObject firstSelected_playerSelection;
 
     public void Update()
     {
@@ -25,7 +27,6 @@ public class MainMenu : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(firstSelected_MainMenu);
             }
-          
         }
 
         if (EventSystem.current.currentSelectedGameObject == null)
@@ -37,18 +38,32 @@ public class MainMenu : MonoBehaviour
         {
             usage = MenuUsageType.Controller;
         }
+
+        if(usage == MenuUsageType.Controller)
+        {
+            this.GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = false;
+        }
+
+        else
+        {
+            this.GetComponent<UnityEngine.UI.GraphicRaycaster>().enabled = true;
+        }
     }
 
     public void backFromPlayerSelection()
     {
         SetPanelState(true, panel_mainMenu);
         SetPanelState(false, panel_playerSelection);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstSelected_MainMenu);
     }
 
     public void GoToPlayerSelection()
     {
         SetPanelState(false, panel_mainMenu);
         SetPanelState(true, panel_playerSelection);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstSelected_playerSelection);
     }
 
     public void GoToGameplay()
@@ -70,5 +85,10 @@ public class MainMenu : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstSelected_MainMenu);
+    }
+
+    public void OnMouseOver()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }
