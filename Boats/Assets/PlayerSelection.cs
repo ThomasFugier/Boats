@@ -243,4 +243,80 @@ public class PlayerSelection : MonoBehaviour
         countdownParent.SetActive(false);
         isCountdowning = false;
     }
+
+    public void ConnectAI(PlayerIndex playerIndex)
+    {
+        switch (playerIndex)
+        {
+            case PlayerIndex.Player1:
+                slot_1.PlayerConnect();
+                slot_1.PlayerReady();
+                playerJoined_1 = true;
+                playerReady_1 = true;
+                playerIsAI_1 = true;
+                break;
+
+            case PlayerIndex.Player2:
+                slot_2.PlayerConnect();
+                slot_2.PlayerReady();
+                playerJoined_2 = true;
+                playerReady_2 = true;
+                playerIsAI_2 = true;
+                break;
+
+            case PlayerIndex.Player3:
+                slot_3.PlayerConnect();
+                slot_3.PlayerReady();
+                playerJoined_3 = true;
+                playerReady_3 = true;
+                playerIsAI_3 = true;
+                break;
+
+            case PlayerIndex.Player4:
+                slot_4.PlayerConnect();
+                slot_4.PlayerReady();
+                playerJoined_4 = true;
+                playerReady_4 = true;
+                playerIsAI_4 = true;
+                break;
+        }
+    }
+
+    public void DisconnectAI(PlayerIndex playerIndex)
+    {
+        switch (playerIndex)
+        {
+            case PlayerIndex.Player1:
+                slot_1.PlayerNoLongerReady();
+                slot_1.PlayerDisconnect();
+                playerJoined_1 = false;
+                playerReady_1 = false;
+                playerIsAI_1 = false;
+                break;
+
+            case PlayerIndex.Player2:
+                slot_2.PlayerNoLongerReady();
+                slot_2.PlayerDisconnect();
+                playerJoined_2 = false;
+                playerReady_2 = false;
+                playerIsAI_2 = false;
+                break;
+
+            case PlayerIndex.Player3:
+                slot_3.PlayerNoLongerReady();
+                slot_3.PlayerDisconnect();
+                playerJoined_3 = false;
+                playerReady_3 = false;
+                playerIsAI_3 = false;
+                break;
+
+            case PlayerIndex.Player4:
+                slot_4.PlayerNoLongerReady();
+                slot_4.PlayerDisconnect();
+                playerJoined_4 = false;
+                playerReady_4 = false;
+                playerIsAI_4 = false;
+                break;
+        }
+    }
 }

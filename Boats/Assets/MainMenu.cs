@@ -69,6 +69,7 @@ public class MainMenu : MonoBehaviour
     public void GoToGameplay()
     {
         SetPanelState(false, panel_playerSelection);
+        SetPanelState(false, panel_mainMenu);
     }
 
     public void SetPanelState(bool state, GameObject panel)

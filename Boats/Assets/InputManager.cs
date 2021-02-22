@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     public string yJoystick = "Joystick_Y";
     public string mainInput = "Main";
     public string secondaryInput = "Secondary";
+    public string xButtonInput = "Main";
     public string leftFrontInput = "FrontLeft";
     public string rightFrontInput = "FrontRight";
 
@@ -185,6 +186,60 @@ public class InputManager : MonoBehaviour
         if(playerIndex != PlayerIndex.Anyone)
         {
             return Input.GetButton(playerDenomination + i + "_" + secondaryInput);
+        }
+
+        return false;
+    }
+
+    public bool GetJoystickButton_X(PlayerIndex playerIndex)
+    {
+        string i = "";
+
+        switch (playerIndex)
+        {
+            case PlayerIndex.Player1:
+                i = "1";
+                break;
+
+            case PlayerIndex.Player2:
+                i = "2";
+                break;
+
+            case PlayerIndex.Player3:
+                i = "3";
+                break;
+
+            case PlayerIndex.Player4:
+                i = "4";
+                break;
+
+            case PlayerIndex.Anyone:
+                if (Input.GetButton(playerDenomination + 1 + "_" + xButtonInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + xButtonInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 3 + "_" + xButtonInput))
+                {
+                    return true;
+                }
+
+                if (Input.GetButton(playerDenomination + 2 + "_" + xButtonInput))
+                {
+                    return true;
+                }
+                break;
+        }
+
+
+        if (playerIndex != PlayerIndex.Anyone)
+        {
+            return Input.GetButton(playerDenomination + i + "_" + xButtonInput);
         }
 
         return false;

@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour
 
     //Inputs
     private bool mainInputLocked = false;
-    private bool mainInput;
+    public bool mainInput;
 
     public void UpdatePlayerIndex()
     {
@@ -71,6 +71,16 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        if (playerIndex == PlayerIndex.AI)
+        {
+            StartCoroutine(AI_Brain_Delayed());
+        }
+
+        if (target_AI == null)
+        {
+            target_AI = this.transform;
+        }
+
         UpdatePlayerIndex();
 
         playerCanvas.transform.parent = null;
@@ -118,6 +128,7 @@ public class PlayerManager : MonoBehaviour
 
         else
         {
+            AI_Brain();
             y = GetAIBrain_Y();
             x = GetAIBrain_X();
             actualBrainX = x;
@@ -155,6 +166,8 @@ public class PlayerManager : MonoBehaviour
 
     public void PressingOnMainButton()
     {
+ 
+
         if(isInFishZone)
         {
             Fish();
@@ -220,8 +233,92 @@ public class PlayerManager : MonoBehaviour
         mainInputLocked = false;
     }
 
+    public void AI_Brain()
+    {
+        mainInput = GetAIBrain_Main();
+    }
+    
+    IEnumerator AI_Brain_Delayed()
+    {
+        yield return null;
+
+        while(true)
+        {
+            yield return new WaitForSeconds(0.1f);
+
+            if (fishAmount == 0)
+            {
+                Fishzone[] fishzones = GameObject.FindObjectsOfType<Fishzone>();
+
+                Transform nearestFishzone = null;
+                float nearestDistance = 5000;
+
+                for(int i = 0; i < fishzones.Length; i++)
+                {
+                    float d = Mathf.Abs(Vector3.Magnitude(fishzones[i].transform.position - this.transform.position));
+
+                    if(d < nearestDistance)
+                    {
+                        nearestDistance = d;
+                        nearestFishzone = fishzones[i].transform;
+                    }
+                }
+
+                target_AI = nearestFishzone;
+            }
+
+            if(fishAmount > 0)
+            {
+                Dock[] docks = GameObject.FindObjectsOfType<Dock>();
+
+                Transform nearestFishzone = null;
+                float nearestDistance = 5000;
+
+                for (int i = 0; i < docks.Length; i++)
+                {
+                    float d = Mathf.Abs(Vector3.Magnitude(docks[i].transform.position - this.transform.position));
+
+                    if (d < nearestDistance)
+                    {
+                        nearestDistance = d;
+                        nearestFishzone = docks[i].transform;
+                    }
+                }
+
+                target_AI = nearestFishzone;
+            }
+        }
+    }
+
+    public bool GetAIBrain_Main()
+    {
+        bool returned = false;
+
+        if (isInFishZone)
+        {
+            returned = true;
+        }
+
+        else if (actualDock != null)
+        {
+            returned = true;
+        }
+
+        else
+        {
+            returned = false;
+        }
+
+        return returned;
+    }
+
     public float GetAIBrain_X()
     {
+        if(target_AI == null)
+        {
+            target_AI = this.transform;
+        }
+
         var targetDir = transform.position - target_AI.transform.transform.position;
         var forward = -transform.forward;
         var localTarget = transform.InverseTransformPoint(target_AI.transform.position);
@@ -234,6 +331,11 @@ public class PlayerManager : MonoBehaviour
 
     public float GetAIBrain_Y()
     {
+        if (target_AI == null)
+        {
+            target_AI = this.transform;
+        }
+
         Vector3 thisPos = this.transform.position;
         Vector3 targetPos = target_AI.transform.position;
         thisPos.y = 0;
@@ -300,6 +402,7 @@ public class PlayerManager : MonoBehaviour
         money += howMuch;
     }
 
+
     public void RequestUseDock()
     {
         if(actualDock.dockType == Dock.DockType.Fish && fishAmount > 0)
@@ -342,20 +445,23 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerHaptics()
     {
-        float lowMotor = 0;
-        float highMotor = 0;
-
-        if(InputTooltip_mainInput.gameObject.activeSelf)
+        if(playerIndex != PlayerIndex.AI)
         {
-            highMotor = mainInteractionTimer;
-        }
-       
-        if(InputManager.Instance.GetJoystickAxis_Y(playerIndex) > 0)
-        {
-            lowMotor = InputManager.Instance.GetJoystickAxis_Y(playerIndex) * GameManager.Instance.GetComponent<XInputTestCS>().motorFactor;
-        }
+            float lowMotor = 0;
+            float highMotor = 0;
 
-        GameManager.Instance.GetComponent<XInputTestCS>().Haptic(playerIndex, lowMotor, highMotor);
+            if (InputTooltip_mainInput.gameObject.activeSelf)
+            {
+                highMotor = mainInteractionTimer;
+            }
+
+            if (InputManager.Instance.GetJoystickAxis_Y(playerIndex) > 0)
+            {
+                lowMotor = InputManager.Instance.GetJoystickAxis_Y(playerIndex) * GameManager.Instance.GetComponent<XInputTestCS>().motorFactor;
+            }
+
+            GameManager.Instance.GetComponent<XInputTestCS>().Haptic(playerIndex, lowMotor, highMotor);
+        }
     }
 }
 

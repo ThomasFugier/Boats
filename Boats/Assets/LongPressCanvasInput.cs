@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class LongPressCanvasInput : MonoBehaviour
 {
-    public enum ButtonType {MainButton, SecondaryButton};
+    public enum ButtonType {MainButton, SecondaryButton, XButton};
 
     public bool canBeUsedByEveryone = false;
 
@@ -74,6 +74,35 @@ public class LongPressCanvasInput : MonoBehaviour
             else
             {
                 if (InputManager.Instance.GetJoystickButton_Secondary(playerIndex))
+                {
+                    ButtonPressed();
+                }
+
+                else
+                {
+                    ButtonNotPressed();
+                }
+            }
+        }
+
+        else if (button == ButtonType.XButton)
+        {
+            if (canBeUsedByEveryone)
+            {
+                if (InputManager.Instance.GetJoystickButton_X(PlayerIndex.Anyone))
+                {
+                    ButtonPressed();
+                }
+
+                else
+                {
+                    ButtonNotPressed();
+                }
+            }
+
+            else
+            {
+                if (InputManager.Instance.GetJoystickButton_X(playerIndex))
                 {
                     ButtonPressed();
                 }

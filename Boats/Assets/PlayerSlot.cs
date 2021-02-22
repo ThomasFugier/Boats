@@ -19,6 +19,8 @@ public class PlayerSlot : MonoBehaviour
     public GameObject tooltip_Ready;
     public GameObject readyObject;
 
+    public bool isAI;
+
     public void OnEnable()
     { 
         PlayerDisconnect();
@@ -76,4 +78,20 @@ public class PlayerSlot : MonoBehaviour
     {
         playerSelection.PlayerReady(playerIndex);
     }
+
+    public void RequestSetAI()
+    {
+        if(isAI == false)
+        {
+            playerSelection.ConnectAI(playerIndex);
+            isAI = true;
+        }
+
+        else
+        {
+            playerSelection.DisconnectAI(playerIndex);
+            isAI = false;
+        }
+    }
+
 }
