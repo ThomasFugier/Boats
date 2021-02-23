@@ -98,15 +98,9 @@ public class WaterManager : MonoBehaviour
         Destroy(colliderReference);
     }
 
-    public void GenerateNextHoule()
-    {
-        nextHoule_X += 2;
-        nextHoule_Y += 2;
-    }
-
     IEnumerator UpdateWater()
     {
-        GenerateNextHoule();
+        waterActualX = 300;
 
         while (true)
         {
@@ -117,27 +111,16 @@ public class WaterManager : MonoBehaviour
 
             //waterActualX += Time.deltaTime * waterFlowSpeed;
 
-            if(houleInterpolationTimer < waterFlowSpeed)
-            {
-                houleInterpolationTimer += Time.deltaTime;
-            }
+           
 
-            else if(houleInterpolationTimer > waterFlowSpeed)
-            {
-                houleInterpolationTimer = 0;
-
-                GenerateNextHoule();
-                previousHoule_X = waterActualX;
-                previousHoule_Y = waterActualY;
-            }
-
-            waterActualX = Mathf.Lerp(previousHoule_X, nextHoule_X, houleInterpolationTimer / waterFlowSpeed);
-            waterActualY = Mathf.Lerp(previousHoule_Y, nextHoule_Y, houleInterpolationTimer / waterFlowSpeed);
+            waterActualX += -WindManager.Instance.windX * WindManager.Instance.windForce * Time.deltaTime * 0.2f;
+            waterActualY += -WindManager.Instance.windY * WindManager.Instance.windForce * Time.deltaTime * 0.2f;
 
             for (var i = 0; i < vertices.Length; i++)
             {
                 vertices[i] = new Vector3(vertices[i].x, vertices[i].y, (Mathf.PerlinNoise(((vertices[i].x) * houleScale), (vertices[i].y) * houleScale)) + globalSeaLevelFactor);
-                vertices[i].z += (Mathf.PerlinNoise(((vertices[i].x + Mathf.Lerp(previousHoule_X, nextHoule_X, houleInterpolationTimer / waterFlowSpeed)) * houleScale), (vertices[i].y + Mathf.Lerp(previousHoule_Y, nextHoule_Y, houleInterpolationTimer / waterFlowSpeed)) * houleScale) * (houleIntensity * tide));
+                vertices[i].z += (Mathf.PerlinNoise(((vertices[i].x + waterActualX) * houleScale), (vertices[i].y + waterActualY) * houleScale));
+                vertices[i].z *= tide * houleIntensity;
 
                 Vector3 TEMP = vertices[i];
                 float fallOffCalulcation = 0;

@@ -33,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     public float maxMotorTorque;
     public float bounce_Factor;
     public float bounce_CollisionMaxSource;
+    public float windFactor;
 
     private float nearestWaterY;
 
@@ -98,6 +99,9 @@ public class PlayerManager : MonoBehaviour
 
     public void Update()
     {
+        Vector3 windForce = new Vector3(WindManager.Instance.windX * WindManager.Instance.windForce * windFactor, 0, WindManager.Instance.windY * WindManager.Instance.windForce * windFactor);
+        this.GetComponent<ConstantForce>().force = windForce;
+
         ProcessInputs();
         UpdateInventory();
         UpdateCanvasPosition();

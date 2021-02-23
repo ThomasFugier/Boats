@@ -107,7 +107,7 @@ public class Buoyancy : MonoBehaviour
             float buoyantForceMass = buoyantForce * rb.mass;
             float underWaterBuoyantForce = Mathf.Clamp01((yBound - objectYValue) * depthPower); //can be inline below
             float buoyency = buoyantForceMass + (buoyantForceMass * underWaterBuoyantForce); //can be inline below
-            rb.AddForce(0f, buoyency, 0f);
+            rb.AddForce(0f, buoyency * Time.deltaTime, 0f);
         }
     }
 

@@ -1481,6 +1481,7 @@ GameObject:
   - component: {fileID: 5223906866735472815}
   - component: {fileID: 2610013556005763568}
   - component: {fileID: 2109255962}
+  - component: {fileID: 5113599707912832599}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1532,6 +1533,7 @@ MonoBehaviour:
   maxMotorTorque: 5
   bounce_Factor: 10
   bounce_CollisionMaxSource: 0.5
+  windFactor: 0.1
   AI_LookAt: {fileID: 4301362404166919727}
   target_AI: {fileID: 0}
   actualBrainX: 0
@@ -1541,6 +1543,7 @@ MonoBehaviour:
   text_playerName: {fileID: 5064614926857837649}
   InputTooltip_mainInput: {fileID: 3490275196754294779}
   actualFishzone: {fileID: 0}
+  mainInput: 0
 --- !u!54 &2610013556005763568
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1569,13 +1572,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ee8ab30df6fde4e819b631634d4d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buoyantForce: 8
+  buoyantForce: 550
   depthPower: 1
   offsetY: 0
   waterVolumeTag: Water
   isInWater: 0
   waterLineOffset: -0.5
   collider: {fileID: 2929903952874458668}
+--- !u!75 &5113599707912832599
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4123015624155127572}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &4301362404166919889
 GameObject:
   m_ObjectHideFlags: 0
