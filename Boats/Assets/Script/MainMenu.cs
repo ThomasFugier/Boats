@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     [Header("References")]
     public GameObject panel_mainMenu;
     public GameObject panel_playerSelection;
+    public GameObject panel_InGame;
 
     [Header("First Selected")]
     public GameObject firstSelected_MainMenu;
@@ -70,6 +71,7 @@ public class MainMenu : MonoBehaviour
     {
         SetPanelState(false, panel_playerSelection);
         SetPanelState(false, panel_mainMenu);
+        SetPanelState(true, panel_InGame);
     }
 
     public void SetPanelState(bool state, GameObject panel)

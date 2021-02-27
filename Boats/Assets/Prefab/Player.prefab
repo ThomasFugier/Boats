@@ -1482,6 +1482,7 @@ GameObject:
   - component: {fileID: 2610013556005763568}
   - component: {fileID: 2109255962}
   - component: {fileID: 5113599707912832599}
+  - component: {fileID: 2034716068}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1528,6 +1529,7 @@ MonoBehaviour:
   fishAmount: 0
   renderer: {fileID: 2470315768370355804}
   playerOffset: {fileID: 4301362404881598532}
+  skinManager: {fileID: 2034716068}
   speedToDock: 0.5
   maxMotorForce: 4
   maxMotorTorque: 5
@@ -1591,6 +1593,21 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
+--- !u!114 &2034716068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4123015624155127572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d144a4bb37f4147bfb80321772da24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderersToColor:
+  - {fileID: 7497800549531615515}
+  - {fileID: 1107480646548417905}
 --- !u!1 &4301362404166919889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3860,11 +3877,11 @@ PrefabInstance:
     - target: {fileID: -4854623497930789627, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 31ad9feb860bb59479bf99b7c2180805, type: 2}
+      objectReference: {fileID: 2100000, guid: dde9ddcb97f58cc4b978b67c35c5a667, type: 2}
     - target: {fileID: -2597468958906990225, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 31ad9feb860bb59479bf99b7c2180805, type: 2}
+      objectReference: {fileID: 2100000, guid: dde9ddcb97f58cc4b978b67c35c5a667, type: 2}
     - target: {fileID: 919132149155446097, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
       propertyPath: m_Name
       value: Boat
@@ -3875,6 +3892,16 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d77413ae2e5448b49a22a00f587907ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+--- !u!23 &1107480646548417905 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -2597468958906990225, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+  m_PrefabInstance: {fileID: 6101639145784716318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7497800549531615515 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4854623497930789627, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+  m_PrefabInstance: {fileID: 6101639145784716318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5991996444043693045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}

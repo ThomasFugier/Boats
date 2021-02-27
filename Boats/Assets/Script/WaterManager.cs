@@ -61,7 +61,9 @@ public class WaterManager : MonoBehaviour
     public MeshRenderer waterPlane;
     public GameObject waterPlaneRight;
     public GameObject waterPlaneLeft;
-
+    public MeshRenderer waterPlane_BackgroundMiddle;
+    public GameObject waterPlane_BackgroundRight;
+    public GameObject waterPlane_BackgroundLeft;
     private Mesh mesh;
     private float[,] noise = new float[41,41];
     private float waterActualX;
@@ -168,6 +170,13 @@ public class WaterManager : MonoBehaviour
             waterPlaneRight.GetComponent<MeshFilter>().mesh.RecalculateNormals();
             waterPlaneLeft.GetComponent<MeshFilter>().mesh.vertices = vertices;
             waterPlaneLeft.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+
+            waterPlane_BackgroundLeft.GetComponent<MeshFilter>().mesh.vertices = vertices;
+            waterPlane_BackgroundLeft.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+            waterPlane_BackgroundRight.GetComponent<MeshFilter>().mesh.vertices = vertices;
+            waterPlane_BackgroundRight.GetComponent<MeshFilter>().mesh.RecalculateNormals();
+            waterPlane_BackgroundMiddle.GetComponent<MeshFilter>().mesh.vertices = vertices;
+            waterPlane_BackgroundMiddle.GetComponent<MeshFilter>().mesh.RecalculateNormals();
         }
     }
 

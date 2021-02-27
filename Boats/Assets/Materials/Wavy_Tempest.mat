@@ -111,7 +111,7 @@ Material:
     - _IntersectionFoamShadowProjection: 8.6
     - _IntersectionWaterBlend: 0
     - _LightingHardness: 0.485
-    - _LightingSmoothness: 0.93
+    - _LightingSmoothness: 0.935
     - _Metallic: 0
     - _NormalsStrength: 0.211
     - _OcclusionStrength: 1

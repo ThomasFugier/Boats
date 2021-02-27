@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     [Space]
     public GameObject renderer;
     public Transform playerOffset;
+    public PlayerSkinManager skinManager;
 
     [Header("Configuration")]
     [Space]
@@ -70,8 +71,15 @@ public class PlayerManager : MonoBehaviour
         text_fishAmount.text = fishAmount.ToString();
     }
 
+    public void InitPlayer()
+    {
+        skinManager.SetPlayerColor();
+    }
+
     void Start()
     {
+        InitPlayer();
+
         if (playerIndex == PlayerIndex.AI)
         {
             StartCoroutine(AI_Brain_Delayed());
