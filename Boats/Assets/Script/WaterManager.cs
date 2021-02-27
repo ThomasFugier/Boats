@@ -63,7 +63,7 @@ public class WaterManager : MonoBehaviour
     public GameObject waterPlaneLeft;
 
     private Mesh mesh;
-    private float[,] noise = new float[80,80];
+    private float[,] noise = new float[41,41];
     private float waterActualX;
     private float waterActualY;
 
@@ -118,17 +118,17 @@ public class WaterManager : MonoBehaviour
 
             for (var i = 0; i < vertices.Length; i++)
             {
-                vertices[i] = new Vector3(vertices[i].x, vertices[i].y, (Mathf.PerlinNoise(((vertices[i].x) * houleScale), (vertices[i].y) * houleScale)) + globalSeaLevelFactor);
-                vertices[i].z += (Mathf.PerlinNoise(((vertices[i].x + waterActualX) * houleScale), (vertices[i].y + waterActualY) * houleScale));
-                vertices[i].z *= tide * houleIntensity;
+                vertices[i] = new Vector3(vertices[i].x, (Mathf.PerlinNoise(((vertices[i].x) * houleScale), (vertices[i].z) * houleScale)) + globalSeaLevelFactor, vertices[i].z);
+                vertices[i].y += (Mathf.PerlinNoise(((vertices[i].x + waterActualX) * houleScale), (vertices[i].z + waterActualY) * houleScale));
+                vertices[i].y *= tide * houleIntensity;
 
                 Vector3 TEMP = vertices[i];
                 float fallOffCalulcation = 0;
 
-                fallOffCalulcation = Mathf.Lerp(portHeight, vertices[i].z, (portFalloffPosition - vertices[i].y) * portFalloff);
+                fallOffCalulcation = Mathf.Lerp(portHeight, vertices[i].y, (portFalloffPosition - vertices[i].z) * portFalloff);
 
-                TEMP.z = fallOffCalulcation;
-                TEMP.z -= Mathf.Lerp(tideMinPositionY, tideMaxPositionY, tide);
+                TEMP.y = fallOffCalulcation;
+                TEMP.y -= Mathf.Lerp(tideMinPositionY, tideMaxPositionY, tide);
 
                 vertices[i] = TEMP;
 
@@ -157,13 +157,9 @@ public class WaterManager : MonoBehaviour
                     fallOffCalulcation = 0;
                 }
 
-                Vector3 pos = transform.TransformPoint(vertices[i]);
-                Vector3 finalPos = Vector3.zero;
-                finalPos.x = pos.x;
-                finalPos.z = pos.y;
-                finalPos.y = pos.z;
+                Vector3 pos = transform.TransformPoint(vertices[i]) * waterPlane.transform.localScale.x;
 
-                colliders[i].transform.position = finalPos + new Vector3(0, collisionYOffset, 0); 
+                colliders[i].transform.position = pos + new Vector3(0, collisionYOffset, 0); 
             }
 
             waterPlane.GetComponent<MeshFilter>().mesh.vertices = vertices;

@@ -42,7 +42,8 @@ public class WindManager : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
+
             ParticleSystem.VelocityOverLifetimeModule VOLM = mainWind.velocityOverLifetime;
             ParticleSystem.EmissionModule EM = mainWind.emission;
 
