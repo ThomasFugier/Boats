@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 8369300852560727469}
   - component: {fileID: 208189483877883374}
   - component: {fileID: 8710484140936403002}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: logo.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 5194818908556009872}
   - component: {fileID: 7463728339977501921}
   - component: {fileID: 173700413435824926}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8609184336347262435}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 3920888244289897646}
   - component: {fileID: 7726754107129406515}
   - component: {fileID: 3708384300802974540}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: metal border.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 4216655989569197916}
   - component: {fileID: 1558473047037656271}
   - component: {fileID: 1646727869544540050}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fish_1.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1316,7 +1316,7 @@ GameObject:
   - component: {fileID: 92187367767525342}
   - component: {fileID: 1085738576715357412}
   - component: {fileID: 1063255917045893221}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: hook.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 553192022122215292}
   - component: {fileID: 8464359218151596475}
   - component: {fileID: 935479189285185280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barell.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1530,8 +1530,9 @@ MonoBehaviour:
   renderer: {fileID: 2470315768370355804}
   playerOffset: {fileID: 4301362404881598532}
   skinManager: {fileID: 2034716068}
+  inputsLocked: 1
   speedToDock: 0.5
-  maxMotorForce: 4
+  maxMotorForce: 7.84
   maxMotorTorque: 5
   bounce_Factor: 10
   bounce_CollisionMaxSource: 0.5
@@ -1555,10 +1556,10 @@ Rigidbody:
   m_GameObject: {fileID: 4123015624155127572}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 2
+  m_Drag: 0.8
   m_AngularDrag: 3
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 3
@@ -1574,7 +1575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ee8ab30df6fde4e819b631634d4d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buoyantForce: 550
+  buoyantForce: 476.8
   depthPower: 1
   offsetY: 0
   waterVolumeTag: Water
@@ -1846,7 +1847,7 @@ GameObject:
   - component: {fileID: 7732922122898941683}
   - component: {fileID: 7668107756694392399}
   - component: {fileID: 6726855003413722265}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: sticker.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2006,7 +2007,7 @@ GameObject:
   - component: {fileID: 3417668665687974227}
   - component: {fileID: 2437021644474266254}
   - component: {fileID: 7418590680107985223}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: electirc cabel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2191,7 +2192,7 @@ GameObject:
   - component: {fileID: 9170616635594316181}
   - component: {fileID: 6474162548151756016}
   - component: {fileID: 404602953774440729}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: door glass.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2272,7 +2273,7 @@ GameObject:
   - component: {fileID: 4721179207940366099}
   - component: {fileID: 9118579202152355997}
   - component: {fileID: 3181460441262548896}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cabin lamp.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2354,7 +2355,7 @@ GameObject:
   - component: {fileID: 2864130479168251082}
   - component: {fileID: 3039956308834251948}
   - component: {fileID: 3847532696879315223}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: kanat.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2435,7 +2436,7 @@ GameObject:
   - component: {fileID: 8247827649941757251}
   - component: {fileID: 346502594783868000}
   - component: {fileID: 2108760096276508941}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: door.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2518,7 +2519,7 @@ GameObject:
   - component: {fileID: 3450463862321145547}
   - component: {fileID: 2849244682758016782}
   - component: {fileID: 4975963718912539357}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: boat cabine.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2676,7 +2677,7 @@ GameObject:
   - component: {fileID: 4858172379931609181}
   - component: {fileID: 3733822897930494621}
   - component: {fileID: 5113012539281339653}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: boat body.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2778,7 +2779,7 @@ GameObject:
   - component: {fileID: 3598003162229298583}
   - component: {fileID: 1281679308584909392}
   - component: {fileID: 147350253624798101}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: windows glass.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2859,7 +2860,7 @@ GameObject:
   - component: {fileID: 8052671099653740269}
   - component: {fileID: 279955372740300861}
   - component: {fileID: 6270636009321030399}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: panel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2942,7 +2943,7 @@ GameObject:
   - component: {fileID: 744842951836301591}
   - component: {fileID: 961111224793059979}
   - component: {fileID: 8206062404047793131}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: gas.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3023,7 +3024,7 @@ GameObject:
   - component: {fileID: 2718269431550986158}
   - component: {fileID: 2703205540514669480}
   - component: {fileID: 816685011736931303}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: handles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3104,7 +3105,7 @@ GameObject:
   - component: {fileID: 9116403235108441982}
   - component: {fileID: 1861114852934451889}
   - component: {fileID: 7458989270540601914}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: door frame.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3185,7 +3186,7 @@ GameObject:
   - component: {fileID: 3665137956570436622}
   - component: {fileID: 6395966828094363395}
   - component: {fileID: 4229790652292802957}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: mast wood.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3342,7 +3343,7 @@ GameObject:
   - component: {fileID: 1208023699460275951}
   - component: {fileID: 6590284984538656504}
   - component: {fileID: 6710827920167326139}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: mast rope.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3423,7 +3424,7 @@ GameObject:
   - component: {fileID: 5998489307661668469}
   - component: {fileID: 4494971452916634629}
   - component: {fileID: 451807891328932046}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: save ring.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3505,7 +3506,7 @@ GameObject:
   - component: {fileID: 1404542823079051955}
   - component: {fileID: 4449024816922181416}
   - component: {fileID: 6973896023279491949}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: save cabel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3741,7 +3742,7 @@ GameObject:
   - component: {fileID: 2293527995407453485}
   - component: {fileID: 4665435330172355392}
   - component: {fileID: 5422498428371999640}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: boat seat.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3878,18 +3879,74 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dde9ddcb97f58cc4b978b67c35c5a667, type: 2}
+    - target: {fileID: -4031621441853041576, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -3476765391924015321, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -3149343562081369390, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2912932039501814258, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -2597468958906990225, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dde9ddcb97f58cc4b978b67c35c5a667, type: 2}
+    - target: {fileID: 105220917926651954, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
       propertyPath: m_Name
       value: Boat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782287327541139830, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1792674971771710429, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d77413ae2e5448b49a22a00f587907ae, type: 2}
+    - target: {fileID: 3704110231835424671, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163237506011842333, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4590038746329624468, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603148300698833579, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6847114521573372619, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821234043318240839, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881174634274772860, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f30c14fef6d6f4f44bc160eec2113cd4, type: 3}
 --- !u!23 &1107480646548417905 stripped

@@ -32,8 +32,16 @@ public class PlayerSelection : MonoBehaviour
     public GameObject countdownParent;
     public UnityEngine.UI.Text countdownValue;
 
+    [Header("PlayerShowroom")]
+    public PlayerShowroom showroom;
+
     private bool isCountdowning;
     private float countdown;
+
+    public void OnEnable()
+    {
+        showroom.StartRecording();
+    }
 
     public void Update()
     {
@@ -133,6 +141,7 @@ public class PlayerSelection : MonoBehaviour
             {
                 GameManager.Instance.StartGameplay();
                 mainMenu.GoToGameplay();
+                showroom.StopRecording();
             }
         }
     }
@@ -142,49 +151,75 @@ public class PlayerSelection : MonoBehaviour
         switch(playerIndex)
         {
             case PlayerIndex.Player1:
-                slot_1.PlayerConnect();
-                playerJoined_1 = true;
+                if(GameManager.Instance.player1 == null)
+                {
+                    slot_1.PlayerConnect();
+                    playerJoined_1 = true;
+                    GameManager.Instance.GeneratePlayer(PlayerIndex.Player1, false);
+                }
                 break;
 
             case PlayerIndex.Player2:
-                slot_2.PlayerConnect();
-                playerJoined_2 = true;
+                if (GameManager.Instance.player2 == null)
+                {
+                    slot_2.PlayerConnect();
+                    playerJoined_2 = true;
+                    GameManager.Instance.GeneratePlayer(PlayerIndex.Player2, false);
+                }
                 break;
 
             case PlayerIndex.Player3:
-                slot_3.PlayerConnect();
-                playerJoined_3 = true;
+                if (GameManager.Instance.player3 == null)
+                {
+                    slot_3.PlayerConnect();
+                    playerJoined_3 = true;
+                    GameManager.Instance.GeneratePlayer(PlayerIndex.Player3, false);
+                }
                 break;
 
             case PlayerIndex.Player4:
-                slot_4.PlayerConnect();
-                playerJoined_4 = true;
+                if (GameManager.Instance.player1 == null)
+                {
+                    slot_4.PlayerConnect();
+                    playerJoined_4 = true;
+                    GameManager.Instance.GeneratePlayer(PlayerIndex.Player4, false);
+                }
                 break;
         }
     }
 
     public void PlayerDisconnect(PlayerIndex playerIndex)
     {
+        GameManager.Instance.RemovePlayer(playerIndex);
+
         switch (playerIndex)
         {
             case PlayerIndex.Player1:
                 slot_1.PlayerDisconnect();
                 playerJoined_1 = false;
+                playerIsAI_1 = false;
+                slot_1.isAI = false;
                 break;
 
             case PlayerIndex.Player2:
                 slot_2.PlayerDisconnect();
                 playerJoined_2 = false;
+                playerIsAI_2 = false;
+                slot_2.isAI = false;
                 break;
 
             case PlayerIndex.Player3:
                 slot_3.PlayerDisconnect();
                 playerJoined_3 = false;
+                playerIsAI_3 = false;
+                slot_3.isAI = false;
                 break;
 
             case PlayerIndex.Player4:
                 slot_4.PlayerDisconnect();
                 playerJoined_4 = false;
+                playerIsAI_4 = false;
+                slot_4.isAI = false;
                 break;
         }
     }
@@ -249,6 +284,13 @@ public class PlayerSelection : MonoBehaviour
         switch (playerIndex)
         {
             case PlayerIndex.Player1:
+
+                if(GameManager.Instance.player1 != null)
+                {
+                    GameManager.Instance.RemovePlayer(PlayerIndex.Player1);
+                }
+
+                GameManager.Instance.GeneratePlayer(PlayerIndex.Player1, true);
                 slot_1.PlayerConnect();
                 slot_1.PlayerReady();
                 playerJoined_1 = true;
@@ -257,6 +299,11 @@ public class PlayerSelection : MonoBehaviour
                 break;
 
             case PlayerIndex.Player2:
+                if (GameManager.Instance.player2 != null)
+                {
+                    GameManager.Instance.RemovePlayer(PlayerIndex.Player2);
+                }
+                GameManager.Instance.GeneratePlayer(PlayerIndex.Player2, true);
                 slot_2.PlayerConnect();
                 slot_2.PlayerReady();
                 playerJoined_2 = true;
@@ -265,6 +312,11 @@ public class PlayerSelection : MonoBehaviour
                 break;
 
             case PlayerIndex.Player3:
+                if (GameManager.Instance.player3 != null)
+                {
+                    GameManager.Instance.RemovePlayer(PlayerIndex.Player3);
+                }
+                GameManager.Instance.GeneratePlayer(PlayerIndex.Player3, true);
                 slot_3.PlayerConnect();
                 slot_3.PlayerReady();
                 playerJoined_3 = true;
@@ -273,6 +325,11 @@ public class PlayerSelection : MonoBehaviour
                 break;
 
             case PlayerIndex.Player4:
+                if (GameManager.Instance.player4 != null)
+                {
+                    GameManager.Instance.RemovePlayer(PlayerIndex.Player4);
+                }
+                GameManager.Instance.GeneratePlayer(PlayerIndex.Player4, true);
                 slot_4.PlayerConnect();
                 slot_4.PlayerReady();
                 playerJoined_4 = true;
@@ -284,6 +341,8 @@ public class PlayerSelection : MonoBehaviour
 
     public void DisconnectAI(PlayerIndex playerIndex)
     {
+        GameManager.Instance.RemovePlayer(playerIndex);
+
         switch (playerIndex)
         {
             case PlayerIndex.Player1:

@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Configuration")]
     [Space]
+    public bool inputsLocked;
     public float speedToDock;
     public float maxMotorForce;
     public float maxMotorTorque;
@@ -110,11 +111,16 @@ public class PlayerManager : MonoBehaviour
         Vector3 windForce = new Vector3(WindManager.Instance.windX * WindManager.Instance.windForce * windFactor, 0, WindManager.Instance.windY * WindManager.Instance.windForce * windFactor);
         this.GetComponent<ConstantForce>().force = windForce;
 
-        ProcessInputs();
+        if(inputsLocked == false)
+        {
+            ProcessInputs();
+            PlayerHaptics();
+        }
+        
         UpdateInventory();
         UpdateCanvasPosition();
         UpdateTooltips();
-        PlayerHaptics();
+
     }
 
     public void UpdateCanvasPosition()
@@ -189,6 +195,15 @@ public class PlayerManager : MonoBehaviour
         {
             RequestUseDock();
         }
+    }
+
+    public void SetPlayerToGameplayMode()
+    {
+        this.GetComponent<Rigidbody>().isKinematic = false;
+        this.GetComponent<Rigidbody>().useGravity = true;
+        this.transform.parent = null;
+
+        GameManager.Instance.SetPlayerSpawn(this);
     }
 
     public void Fish()
@@ -474,6 +489,15 @@ public class PlayerManager : MonoBehaviour
 
             GameManager.Instance.GetComponent<XInputTestCS>().Haptic(playerIndex, lowMotor, highMotor);
         }
+    }
+
+    public void OnDestroy()
+    {
+        if(playerCanvas)
+        {
+            Destroy(playerCanvas.gameObject);
+        }
+        
     }
 }
 

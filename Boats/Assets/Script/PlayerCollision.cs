@@ -9,8 +9,7 @@ public class PlayerCollision : MonoBehaviour
     {
 
         if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log(Mathf.Clamp(Vector3.Normalize(collision.impulse).magnitude, 0, 1));
+        { 
             thisPlayer.BouncePlayer(collision.gameObject.transform.parent.GetComponent<PlayerManager>(), thisPlayer.GetComponent<Rigidbody>().velocity, Mathf.Clamp(Vector3.Normalize(collision.impulse).magnitude, 0 ,1));
         }
     }
